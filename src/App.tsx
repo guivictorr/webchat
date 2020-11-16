@@ -1,12 +1,9 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { auth, firestore, firebase } from './firebase';
 
-import Chat from './pages/Chat';
+import Home from './pages/Home';
 
 const App: React.FC = () => {
-  return <Chat />;
+  return <Home />;
 };
 
 export default App;
