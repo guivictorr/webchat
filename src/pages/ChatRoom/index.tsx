@@ -1,9 +1,13 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
+import { SiHipchat } from 'react-icons/si';
+import { IoMdSend } from 'react-icons/io';
 import { firestore, auth, firebase } from '../../firebase';
 
 import SignOutButton from '../../components/SignOutButton';
 import ChatMessage from '../../components/ChatMessage';
+
+import { ChatRoomContainer } from './styles';
 
 interface MessageProps {
   id: string;
@@ -35,31 +39,43 @@ const Chat: React.FC = () => {
 
     const { uid, photoURL } = auth.currentUser as CurrentUserProps;
 
-    await messagesRef.add({
-      text: messageValue,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      uid,
-      photoURL,
-    });
+    try {
+      await messagesRef.add({
+        text: messageValue,
+        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+        uid,
+        photoURL,
+      });
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
-    <main>
+    <ChatRoomContainer>
       <header>
-        <h1>WebChat</h1>
+        <h1>
+          <SiHipchat size={36} color="#FAD02C" />
+          WebChat
+        </h1>
         <SignOutButton />
       </header>
-      <section>
-        <ul>
-          {messages &&
-            messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-        </ul>
-        <form onSubmit={handleFormSubmit}>
-          <input type="text" value={messageValue} onChange={handleInputValue} />
-          <button type="submit">Send</button>
-        </form>
-      </section>
-    </main>
+      <ul>
+        {messages &&
+          messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+      </ul>
+      <form onSubmit={handleFormSubmit}>
+        <input
+          type="text"
+          value={messageValue}
+          onChange={handleInputValue}
+          placeholder="Type something..."
+        />
+        <button type="submit">
+          <IoMdSend size={26} color="#FAD02C" />
+        </button>
+      </form>
+    </ChatRoomContainer>
   );
 };
 

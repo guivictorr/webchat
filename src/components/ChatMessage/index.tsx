@@ -17,7 +17,7 @@ interface MessageProps {
 
 const ChatMessage: React.FC<ChatMessage> = ({ message }) => {
   const { text, photoURL, uid } = message;
-  const messageClass = uid === auth.currentUser?.uid ? 'send' : 'received';
+  const messageClass = uid === auth.currentUser?.uid ? 'sent' : 'received';
 
   return (
     <ChatMessageContainer messageClass={messageClass}>

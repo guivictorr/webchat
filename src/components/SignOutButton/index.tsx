@@ -1,14 +1,16 @@
 import React from 'react';
 import { auth } from '../../firebase';
 
-const SignIn: React.FC = () => {
+import { SignOutContainer } from './styles';
+
+const SignOut: React.FC = () => {
   return (
     auth.currentUser && (
-      <button type="button" onClick={() => auth.signOut()}>
-        SignOut
-      </button>
+      <SignOutContainer type="button" onClick={() => auth.signOut()}>
+        Sign out
+      </SignOutContainer>
     )
   );
 };
 
-export default SignIn;
+export default SignOut;
