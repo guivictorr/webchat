@@ -1,17 +1,23 @@
 import React from 'react';
+import { SiGoogle } from 'react-icons/si';
 import { firebase, auth } from '../../firebase';
 
-const SignIn: React.FC = () => {
+import { SignInButtonContainer } from './styles';
+
+const SignInButton: React.FC = () => {
   const handleSignInWithGoogle = () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider);
   };
 
   return (
-    <button type="button" onClick={handleSignInWithGoogle}>
-      Login with Google
-    </button>
+    <SignInButtonContainer>
+      <p>Login with Google</p>
+      <button type="button" onClick={handleSignInWithGoogle}>
+        <SiGoogle size={20} color="#333652" />
+      </button>
+    </SignInButtonContainer>
   );
 };
 
-export default SignIn;
+export default SignInButton;
