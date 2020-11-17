@@ -1,9 +1,14 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from './firebase';
 
-import Home from './pages/Home';
+import ChatRoom from './pages/ChatRoom';
+import SignIn from './pages/SignIn';
 
 const App: React.FC = () => {
-  return <Home />;
+  const [user] = useAuthState(auth);
+
+  return user ? <ChatRoom /> : <SignIn />;
 };
 
 export default App;
