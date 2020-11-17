@@ -28,6 +28,7 @@ const Chat: React.FC = () => {
   const [messages] = useCollectionData<MessageProps>(query, {
     idField: 'id',
   });
+  const [error, setError] = useState('');
   const [messageValue, setMessageValue] = useState('');
 
   const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
@@ -40,19 +41,26 @@ const Chat: React.FC = () => {
     const { uid, photoURL } = auth.currentUser as CurrentUserProps;
 
     try {
+      if (!messageValue) {
+        setError('Type something!');
+        return;
+      }
+
       await messagesRef.add({
         text: messageValue,
         createdAt: firebase.firestore.FieldValue.serverTimestamp(),
         uid,
         photoURL,
       });
+      setMessageValue('');
+      setError('');
     } catch (err) {
       console.log(err);
     }
   };
 
   return (
-    <ChatRoomContainer>
+    <ChatRoomContainer error={error}>
       <header>
         <h1>
           <SiHipchat size={36} color="#FAD02C" />

@@ -1,6 +1,10 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
-export const ChatRoomContainer = styled.main`
+interface ChatRoomProps {
+  error: string;
+}
+
+export const ChatRoomContainer = styled.main<ChatRoomProps>`
   width: 100%;
   height: 100%;
   display: flex;
@@ -37,7 +41,7 @@ export const ChatRoomContainer = styled.main`
     align-items: center;
     justify-content: center;
     width: 100%;
-    margin: 30px 0;
+    margin: 10px 0;
 
     input {
       height: 50px;
@@ -48,6 +52,14 @@ export const ChatRoomContainer = styled.main`
       width: 70%;
       font-size: 18px;
       color: #333652;
+      ${({ error }) =>
+        error
+          ? css`
+              border: 2px solid tomato;
+            `
+          : css`
+              border: none;
+            `}
 
       &::placeholder {
         font-size: 20px;
