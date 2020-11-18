@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from 'react';
+import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { SiHipchat } from 'react-icons/si';
 import { IoMdSend } from 'react-icons/io';
@@ -23,13 +23,20 @@ interface CurrentUserProps {
 }
 
 const Chat: React.FC = () => {
+  const [error, setError] = useState('');
+  const [messageValue, setMessageValue] = useState('');
+  const messageEndRef = useRef<HTMLDivElement>(null);
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt').limit(25);
   const [messages] = useCollectionData<MessageProps>(query, {
     idField: 'id',
   });
-  const [error, setError] = useState('');
-  const [messageValue, setMessageValue] = useState('');
+
+  const handleScrollChatToBottom = () => {
+    if (messageEndRef.current !== null) {
+      messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
 
   const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
     setMessageValue(event.target.value);
@@ -59,6 +66,10 @@ const Chat: React.FC = () => {
     }
   };
 
+  useEffect(() => {
+    handleScrollChatToBottom();
+  }, [handleScrollChatToBottom]);
+
   return (
     <ChatRoomContainer error={error}>
       <header>
@@ -71,6 +82,7 @@ const Chat: React.FC = () => {
       <ul>
         {messages &&
           messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+        <div ref={messageEndRef} />
       </ul>
       <form onSubmit={handleFormSubmit}>
         <input
