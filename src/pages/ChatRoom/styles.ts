@@ -5,7 +5,7 @@ interface ChatRoomProps {
 }
 
 export const ChatRoomContainer = styled.main<ChatRoomProps>`
-  width: 100%;
+  width: 50%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -36,6 +36,10 @@ export const ChatRoomContainer = styled.main<ChatRoomProps>`
     flex: 1;
   }
 
+  ul::-webkit-scrollbar {
+    display: none;
+  }
+
   form {
     display: flex;
     align-items: center;
@@ -46,7 +50,7 @@ export const ChatRoomContainer = styled.main<ChatRoomProps>`
     input {
       height: 50px;
       border: none;
-      padding: 8px;
+      padding: 8px 16px;
       border-radius: 8px;
       background-color: #fad02c;
       width: 70%;
@@ -64,6 +68,7 @@ export const ChatRoomContainer = styled.main<ChatRoomProps>`
       &::placeholder {
         font-size: 20px;
         color: #333652;
+        font-weight: bold;
       }
     }
 

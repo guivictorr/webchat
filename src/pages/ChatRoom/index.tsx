@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { SiHipchat } from 'react-icons/si';
-import { IoMdSend } from 'react-icons/io';
+import { IoMdSend, IoIosExit } from 'react-icons/io';
 import { firestore, auth, firebase } from '../../firebase';
 
 import SignOutButton from '../../components/SignOutButton';
