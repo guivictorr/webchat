@@ -1,21 +1,9 @@
 import React from 'react';
 import { auth } from '../../firebase';
-
+import { ChatMessageProps } from '../../interfaces';
 import { ChatMessageContainer } from './styles';
 
-interface ChatMessage {
-  message: MessageProps;
-}
-
-interface MessageProps {
-  text: string;
-  uid: string;
-  id: string;
-  createdAt: Date | string;
-  photoURL: string;
-}
-
-const ChatMessage: React.FC<ChatMessage> = ({ message }) => {
+const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   const { text, photoURL, uid } = message;
   const messageClass = uid === auth.currentUser?.uid ? 'sent' : 'received';
 

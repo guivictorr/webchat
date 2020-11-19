@@ -1,36 +1,18 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { SiHipchat } from 'react-icons/si';
-import { IoMdSend, IoIosExit } from 'react-icons/io';
-import { firestore, auth, firebase } from '../../firebase';
+import { IoMdSend } from 'react-icons/io';
+import useMessages from '../../hooks/useMessages';
 
 import SignOutButton from '../../components/SignOutButton';
 import ChatMessage from '../../components/ChatMessage';
 
 import { ChatRoomContainer } from './styles';
 
-interface MessageProps {
-  id: string;
-  text: string;
-  uid: string;
-  createdAt: Date | string;
-  photoURL: string;
-}
-
-interface CurrentUserProps {
-  photoURL: string;
-  uid: string;
-}
-
 const Chat: React.FC = () => {
   const [error, setError] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const messageEndRef = useRef<HTMLDivElement>(null);
-  const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt');
-  const [messages] = useCollectionData<MessageProps>(query, {
-    idField: 'id',
-  });
+  const { messages, handleAddMessage } = useMessages();
 
   const handleScrollChatToBottom = () => {
     if (messageEndRef.current !== null) {
@@ -45,20 +27,14 @@ const Chat: React.FC = () => {
   const handleFormSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    const { uid, photoURL } = auth.currentUser as CurrentUserProps;
-
     try {
       if (!messageValue) {
         setError('Type something!');
         return;
       }
 
-      await messagesRef.add({
-        text: messageValue,
-        createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-        uid,
-        photoURL,
-      });
+      await handleAddMessage(messageValue);
+
       setMessageValue('');
       setError('');
     } catch (err) {
