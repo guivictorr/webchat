@@ -10,7 +10,7 @@ export const Container = styled.button<ButtonProps>`
   color: ${({ theme }) => theme.colors.buttonText};
   font-size: 18px;
   cursor: pointer;
-  margin-top: 16px;
+  margin: 16px 0;
   display: flex;
   align-items: center;
   justify-content: center;

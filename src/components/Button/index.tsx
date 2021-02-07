@@ -6,7 +6,7 @@ import { Container } from './styles';
 const Button: React.FC<ButtonProps> = ({ title, backgroundColor, image }) => {
   return (
     <Container backgroundColor={backgroundColor}>
-      {image ? <img src={image} alt={title} /> : <h6>{title}</h6>}
+      {image ? <img src={image} alt={title} /> : <p>{title}</p>}
     </Container>
   );
 };
