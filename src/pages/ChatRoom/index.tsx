@@ -1,5 +1,4 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { SiHipchat } from 'react-icons/si';
 import { IoMdSend } from 'react-icons/io';
 import useMessages from '../../hooks/useMessages';
 
@@ -70,10 +69,21 @@ const Chat: React.FC = () => {
         <header>
           <p>Title</p>
         </header>
-        <ul>dsadsa</ul>
+        <ul>
+          {messages?.map(message => (
+            <ChatMessage key={message.id} message={message} />
+          ))}
+          <div ref={messageEndRef} />
+        </ul>
         <footer>
-          <form>
-            <input type="text" placeholder="Enter your message" />
+          <form onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              placeholder="Enter your message"
+              value={messageValue}
+              onChange={handleInputValue}
+              maxLength={300}
+            />
             <button type="submit">
               <IoMdSend size={24} color="#e0e0e0" />
             </button>

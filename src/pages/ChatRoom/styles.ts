@@ -72,6 +72,14 @@ export const ChatRoomContainer = styled.div<ChatRoomProps>`
 
     ul {
       flex: 1;
+      margin: 0 auto;
+      list-style: none;
+      overflow-y: scroll;
+      padding: 20px 0;
+    }
+
+    ul::-webkit-scrollbar {
+      display: none;
     }
 
     footer {
@@ -90,6 +98,15 @@ export const ChatRoomContainer = styled.div<ChatRoomProps>`
         border-radius: ${({ theme }) => theme.borderRadius};
         height: 55px;
         padding: 5px 7px;
+        transition: all 0.4s ease;
+        ${({ error }) =>
+          error
+            ? css`
+                border: 2px solid tomato;
+              `
+            : css`
+                border: none;
+              `}
 
         input {
           flex: 1;

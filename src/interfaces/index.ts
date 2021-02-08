@@ -30,7 +30,10 @@ export interface MessageProps {
   id: string;
   text: string;
   uid: string;
-  createdAt: Date | string;
+  createdAt: {
+    seconds: number;
+    nanoseconds: number;
+  };
   photoURL: string;
   name: string;
 }
