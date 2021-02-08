@@ -19,4 +19,14 @@ export const Container = styled.form`
       color: ${({ theme }) => theme.colors.primary};
     }
   }
+
+  fieldset {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+    width: 100%;
+    border: none;
+    height: 110px;
+  }
 `;

@@ -3,10 +3,10 @@ import { SiHipchat } from 'react-icons/si';
 import { IoMdSend } from 'react-icons/io';
 import useMessages from '../../hooks/useMessages';
 
-import SignOutButton from '../../components/SignOutButton';
 import ChatMessage from '../../components/ChatMessage';
 
 import { ChatRoomContainer } from './styles';
+import { auth } from '../../firebase';
 
 const Chat: React.FC = () => {
   const [error, setError] = useState('');
@@ -53,7 +53,9 @@ const Chat: React.FC = () => {
           <SiHipchat size={36} color="#FAD02C" />
           WebChat
         </h1>
-        <SignOutButton />
+        <button onClick={() => auth.signOut()} type="button">
+          SAI
+        </button>
       </header>
       <ul>
         {messages &&

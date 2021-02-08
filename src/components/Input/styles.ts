@@ -10,6 +10,7 @@ export const Container = styled.div<InputStyles>`
   align-items: center;
   justify-content: center;
   transition: all 0.4s ease;
+  width: 100%;
 
   svg {
     color: ${({ theme }) => theme.colors.secondary};

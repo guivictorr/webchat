@@ -1,5 +1,8 @@
-import React from 'react';
+import React, { FormEvent } from 'react';
 import { FaTheaterMasks } from 'react-icons/fa';
+
+import { firebase, auth } from '../../firebase';
+import { theme } from '../../utils/theme.json';
 
 import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
@@ -12,22 +15,37 @@ import Form from '../../components/Form';
 import SignInContainer from './styles';
 
 const SignIn: React.FC = () => {
+  const handleSignInWithGoogle = (event: FormEvent<HTMLButtonElement>) => {
+    event.preventDefault();
+    const provider = new firebase.auth.GoogleAuthProvider();
+    auth.signInWithPopup(provider);
+  };
+
   return (
     <SignInContainer>
       <main>
         <img src={logo} alt="WebChat" loading="lazy" />
         <Form title="Log In" subTitle="WELCOME">
-          <Input
-            icon={FaTheaterMasks}
-            type="text"
-            placeholder="Enter as anonymous"
-            maxLength={20}
-          />
+          <fieldset>
+            <Input
+              icon={FaTheaterMasks}
+              type="text"
+              placeholder="Enter as anonymous"
+              maxLength={20}
+            />
+            <Button
+              title="Log In"
+              backgroundColor={theme.colors.buttonColor}
+              type="submit"
+            />
+          </fieldset>
           <h2>OR</h2>
           <Button
             title="Log in with Google"
             image={googleicon}
             backgroundColor="#f5f5f5"
+            onClick={handleSignInWithGoogle}
+            type="button"
           />
         </Form>
       </main>
