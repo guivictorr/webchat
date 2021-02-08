@@ -7,12 +7,14 @@ import ChatMessage from '../../components/ChatMessage';
 
 import { ChatRoomContainer } from './styles';
 import { auth } from '../../firebase';
+import { CurrentUserProps } from '../../interfaces';
 
 const Chat: React.FC = () => {
   const [error, setError] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const messageEndRef = useRef<HTMLDivElement>(null);
   const { messages, handleAddMessage } = useMessages();
+  const { photoURL, displayName } = auth.currentUser as CurrentUserProps;
 
   const handleScrollChatToBottom = () => {
     if (messageEndRef.current !== null) {
@@ -48,31 +50,22 @@ const Chat: React.FC = () => {
 
   return (
     <ChatRoomContainer error={error}>
-      <header>
-        <h1>
-          <SiHipchat size={36} color="#FAD02C" />
-          WebChat
-        </h1>
-        <button onClick={() => auth.signOut()} type="button">
-          SAI
-        </button>
-      </header>
-      <ul>
-        {messages &&
-          messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-        <div ref={messageEndRef} />
-      </ul>
-      <form onSubmit={handleFormSubmit}>
-        <input
-          type="text"
-          value={messageValue}
-          onChange={handleInputValue}
-          placeholder="Type something..."
-        />
-        <button type="submit">
-          <IoMdSend size={26} color="#FAD02C" />
-        </button>
-      </form>
+      <aside>
+        <header>
+          <p>Title</p>
+        </header>
+        <main>
+          <p>
+            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+            Voluptatibus nihil, atque rem at modi consequuntur velit id ut amet
+            perspiciatis dicta autem. Ab, tempore earum?
+          </p>
+        </main>
+        <footer>
+          <img src={photoURL} alt={displayName} />
+          <p>{displayName}</p>
+        </footer>
+      </aside>
     </ChatRoomContainer>
   );
 };

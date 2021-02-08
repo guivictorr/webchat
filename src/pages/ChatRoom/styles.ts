@@ -4,89 +4,51 @@ interface ChatRoomProps {
   error: string;
 }
 
-export const ChatRoomContainer = styled.main<ChatRoomProps>`
-  width: 50%;
+export const ChatRoomContainer = styled.div<ChatRoomProps>`
+  width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
   flex-direction: column;
-
-  header {
+  aside {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100px;
-    width: 100%;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
 
-    h1 {
+    header {
+      height: 70px;
       display: flex;
       align-items: center;
+      padding: 20px 40px;
+      background-color: ${({ theme }) => theme.colors.secondaryBackground};
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 24px;
     }
 
-    svg {
-      margin-right: 5px;
-    }
-  }
-
-  ul {
-    overflow-y: scroll;
-    list-style: none;
-    width: 100%;
-    flex: 1;
-  }
-
-  ul::-webkit-scrollbar {
-    display: none;
-  }
-
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 10px 0;
-
-    input {
-      height: 50px;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      background-color: #fad02c;
-      width: 70%;
+    main {
+      background: ${({ theme }) => theme.colors.contrastBackground};
+      padding: 10px 20px;
+      color: ${({ theme }) => theme.colors.primary};
       font-size: 18px;
-      color: #333652;
-      ${({ error }) =>
-        error
-          ? css`
-              border: 2px solid tomato;
-            `
-          : css`
-              border: none;
-            `}
-
-      &::placeholder {
-        font-size: 20px;
-        color: #333652;
-        font-weight: bold;
-      }
+      flex: 1;
     }
 
-    button {
+    footer {
+      height: 70px;
       display: flex;
       align-items: center;
-      justify-content: center;
-      border: none;
-      border-radius: 50%;
-      padding: 8px;
-      background-color: #333652;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: all 0.2s ease;
-      overflow: hidden;
+      padding: 15px 40px;
+      background-color: ${({ theme }) => theme.colors.secondaryBackground};
 
-      &:hover {
-        transform: scale(1.2);
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: ${({ theme }) => theme.borderRadius};
+      }
+
+      p {
+        margin-left: 10px;
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
   }
