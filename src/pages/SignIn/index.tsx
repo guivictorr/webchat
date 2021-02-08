@@ -1,7 +1,5 @@
 import React from 'react';
-import { MdEmail, MdLock } from 'react-icons/md';
-
-import { theme } from '../../utils/theme.json';
+import { FaTheaterMasks } from 'react-icons/fa';
 
 import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
@@ -18,23 +16,13 @@ const SignIn: React.FC = () => {
     <SignInContainer>
       <main>
         <img src={logo} alt="WebChat" loading="lazy" />
-        <Form title="Sign In" subTitle="WELCOME">
-          <Input icon={MdEmail} placeholder="Enter your email" type="email" />
+        <Form title="Log In" subTitle="WELCOME">
           <Input
-            icon={MdLock}
-            isPassword
-            type="password"
-            placeholder="Enter your password"
+            icon={FaTheaterMasks}
+            type="text"
+            placeholder="Enter as anonymous"
+            maxLength={20}
           />
-          <Button
-            type="button"
-            title="Sign In"
-            backgroundColor={theme.colors.buttonColor}
-          />
-          <p>
-            Dont have an account?
-            <a href="https://github.com/guivictorr">Sign Up</a>
-          </p>
           <h2>OR</h2>
           <Button
             title="Log in with Google"

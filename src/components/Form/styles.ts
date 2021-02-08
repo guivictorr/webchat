@@ -8,6 +8,7 @@ export const Container = styled.form`
   margin-top: 70px;
 
   header {
+    margin-bottom: 20px;
     h1 {
       font-size: 18px;
       color: ${({ theme }) => theme.colors.secondary};

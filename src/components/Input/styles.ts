@@ -9,7 +9,6 @@ export const Container = styled.div<InputStyles>`
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-top: 10px;
   transition: all 0.4s ease;
 
   svg {
