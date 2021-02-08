@@ -66,6 +66,20 @@ const Chat: React.FC = () => {
           <p>{displayName}</p>
         </footer>
       </aside>
+      <main>
+        <header>
+          <p>Title</p>
+        </header>
+        <ul>dsadsa</ul>
+        <footer>
+          <form>
+            <input type="text" placeholder="Enter your message" />
+            <button type="submit">
+              <IoMdSend size={24} color="#e0e0e0" />
+            </button>
+          </form>
+        </footer>
+      </main>
     </ChatRoomContainer>
   );
 };
