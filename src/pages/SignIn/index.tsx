@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import { FaTheaterMasks } from 'react-icons/fa';
+import { useHistory } from 'react-router-dom';
 
 import { firebase, auth } from '../../firebase';
 import { theme } from '../../utils/theme.json';
@@ -15,10 +16,15 @@ import Form from '../../components/Form';
 import SignInContainer from './styles';
 
 const SignIn: React.FC = () => {
-  const handleSignInWithGoogle = (event: FormEvent<HTMLButtonElement>) => {
+  const { push } = useHistory();
+
+  const handleSignInWithGoogle = async (
+    event: FormEvent<HTMLButtonElement>,
+  ) => {
     event.preventDefault();
     const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
+    await auth.signInWithPopup(provider);
+    push('/chat');
   };
 
   return (
