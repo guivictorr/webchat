@@ -1,10 +1,12 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { SiHipchat } from 'react-icons/si';
 import { IoMdSend } from 'react-icons/io';
-import useMessages from '../../hooks/useMessages';
 
-import SignOutButton from '../../components/SignOutButton';
+import useMessages from '../../hooks/useMessages';
+import { CurrentUserProps } from '../../interfaces';
+import { auth } from '../../firebase';
+
 import ChatMessage from '../../components/ChatMessage';
+import SignOut from '../../components/SignOut';
 
 import { ChatRoomContainer } from './styles';
 
@@ -13,6 +15,7 @@ const Chat: React.FC = () => {
   const [messageValue, setMessageValue] = useState('');
   const messageEndRef = useRef<HTMLDivElement>(null);
   const { messages, handleAddMessage } = useMessages();
+  const { photoURL, displayName } = auth.currentUser as CurrentUserProps;
 
   const handleScrollChatToBottom = () => {
     if (messageEndRef.current !== null) {
@@ -48,29 +51,44 @@ const Chat: React.FC = () => {
 
   return (
     <ChatRoomContainer error={error}>
-      <header>
-        <h1>
-          <SiHipchat size={36} color="#FAD02C" />
-          WebChat
-        </h1>
-        <SignOutButton />
-      </header>
-      <ul>
-        {messages &&
-          messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-        <div ref={messageEndRef} />
-      </ul>
-      <form onSubmit={handleFormSubmit}>
-        <input
-          type="text"
-          value={messageValue}
-          onChange={handleInputValue}
-          placeholder="Type something..."
-        />
-        <button type="submit">
-          <IoMdSend size={26} color="#FAD02C" />
-        </button>
-      </form>
+      <aside>
+        <header>
+          <p>Hello!</p>
+        </header>
+        <main>
+          <p>Rooms system soon.</p>
+        </main>
+        <footer>
+          <img src={photoURL} alt={displayName} />
+          <p>{displayName}</p>
+        </footer>
+      </aside>
+      <main>
+        <header>
+          <p>Chat</p>
+          <SignOut />
+        </header>
+        <ul>
+          {messages?.map(message => (
+            <ChatMessage key={message.id} message={message} />
+          ))}
+          <div ref={messageEndRef} />
+        </ul>
+        <footer>
+          <form onSubmit={handleFormSubmit}>
+            <input
+              type="text"
+              placeholder="Enter your message"
+              value={messageValue}
+              onChange={handleInputValue}
+              maxLength={300}
+            />
+            <button type="submit">
+              <IoMdSend size={24} color="#e0e0e0" />
+            </button>
+          </form>
+        </footer>
+      </main>
     </ChatRoomContainer>
   );
 };

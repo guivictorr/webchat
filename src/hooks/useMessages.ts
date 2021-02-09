@@ -15,7 +15,6 @@ const useMessages = (): UseMessagesProps => {
 
   const handleAddMessage = async (text: string) => {
     const { uid, photoURL, displayName } = auth.currentUser as CurrentUserProps;
-    console.log(displayName);
     await messagesRef.add({
       text,
       name: displayName,

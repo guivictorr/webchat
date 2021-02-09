@@ -4,89 +4,131 @@ interface ChatRoomProps {
   error: string;
 }
 
-export const ChatRoomContainer = styled.main<ChatRoomProps>`
-  width: 50%;
+export const ChatRoomContainer = styled.div<ChatRoomProps>`
+  width: 100%;
   height: 100%;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.primaryBackground};
 
-  header {
+  aside {
     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    height: 100px;
-    width: 100%;
+    flex-direction: column;
+    width: 300px;
+    height: 100%;
 
-    h1 {
+    header {
+      height: 70px;
       display: flex;
       align-items: center;
+      padding: 20px 40px;
+      background-color: ${({ theme }) => theme.colors.secondaryBackground};
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 24px;
     }
 
-    svg {
-      margin-right: 5px;
-    }
-  }
-
-  ul {
-    overflow-y: scroll;
-    list-style: none;
-    width: 100%;
-    flex: 1;
-  }
-
-  ul::-webkit-scrollbar {
-    display: none;
-  }
-
-  form {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    margin: 10px 0;
-
-    input {
-      height: 50px;
-      border: none;
-      padding: 8px 16px;
-      border-radius: 8px;
-      background-color: #fad02c;
-      width: 70%;
+    main {
+      background: ${({ theme }) => theme.colors.contrastBackground};
+      padding: 10px 20px;
+      color: ${({ theme }) => theme.colors.primary};
       font-size: 18px;
-      color: #333652;
-      ${({ error }) =>
-        error
-          ? css`
-              border: 2px solid tomato;
-            `
-          : css`
-              border: none;
-            `}
+      flex: 1;
+    }
 
-      &::placeholder {
-        font-size: 20px;
-        color: #333652;
-        font-weight: bold;
+    footer {
+      height: 70px;
+      display: flex;
+      align-items: center;
+      padding: 15px 40px;
+      background-color: ${({ theme }) => theme.colors.secondaryBackground};
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: ${({ theme }) => theme.borderRadius};
+      }
+
+      p {
+        margin-left: 10px;
+        color: ${({ theme }) => theme.colors.primary};
       }
     }
+  }
 
-    button {
+  main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    header {
+      height: 70px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 40px;
+      background-color: ${({ theme }) => theme.colors.contrastBackground};
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 24px;
+    }
+
+    ul {
+      flex: 1;
+      margin: 0 auto;
+      list-style: none;
+      overflow-y: scroll;
+      padding: 20px 0;
+    }
+
+    ul::-webkit-scrollbar {
+      display: none;
+    }
+
+    footer {
+      height: 100px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border: none;
-      border-radius: 50%;
-      padding: 8px;
-      background-color: #333652;
-      cursor: pointer;
-      margin-left: 10px;
-      transition: all 0.2s ease;
-      overflow: hidden;
+      padding: 24px 40px;
 
-      &:hover {
-        transform: scale(1.2);
+      form {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex: 1;
+        background-color: ${({ theme }) => theme.colors.inputColor};
+        border-radius: ${({ theme }) => theme.borderRadius};
+        height: 55px;
+        padding: 5px 7px;
+        transition: all 0.4s ease;
+        ${({ error }) =>
+          error
+            ? css`
+                border: 2px solid tomato;
+              `
+            : css`
+                border: none;
+              `}
+
+        input {
+          flex: 1;
+          height: 100%;
+          background-color: transparent;
+          border: none;
+          font-size: 14px;
+          color: ${({ theme }) => theme.colors.secondary};
+          margin: 0px 5px;
+        }
+
+        button {
+          border: none;
+          border-radius: ${({ theme }) => theme.borderRadius};
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background-color: ${({ theme }) => theme.colors.buttonColor};
+          padding: 8px;
+          cursor: pointer;
+        }
       }
     }
   }

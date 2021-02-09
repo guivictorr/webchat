@@ -1,5 +1,4 @@
 import { createGlobalStyle } from 'styled-components';
-import { ChatRoomContainer } from '../pages/ChatRoom/styles';
 
 export default createGlobalStyle`
   * {
@@ -11,23 +10,12 @@ export default createGlobalStyle`
   }
 
   body,html,#root {
-    height: 100%;
-    width: 100%;
+    height: 100vh;
+    width: 100vw;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
   }
 
   body {
-    font-family: Nunito, sans-serif;
-    background-color: #E9EAEC;
-    color: #333652;
-  }
-
-  @media (max-width: 850px) {
-    main${ChatRoomContainer} {
-      width: 100%;
-    }
+    font-family: 'Noto Sans', sans-serif;
   }
 `;

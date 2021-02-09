@@ -1,46 +1,43 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
-interface ChatMessageContainerProps {
-  messageClass: string;
-}
-
-export const ChatMessageContainer = styled.li<ChatMessageContainerProps>`
+export const ChatMessageContainer = styled.li`
   display: flex;
-  align-items: center;
-
-  p {
-    word-wrap: break-word;
-    text-align: left;
-    max-width: 200px;
-    width: auto;
-    padding: 6px;
-  }
 
   & + li {
-    margin-top: 10px;
+    margin-top: 50px;
   }
 
   img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    margin: 0 10px;
+    width: 52px;
+    height: 52px;
+    border-radius: ${({ theme }) => theme.borderRadius};
   }
 
-  ${({ messageClass }) =>
-    messageClass === 'sent'
-      ? css`
-          flex-direction: row-reverse;
-          p {
-            background-color: #90adc6;
-            border-radius: 6px 0 6px 6px;
-          }
-        `
-      : css`
-          p {
-            background-color: #333652;
-            color: #e9eaec;
-            border-radius: 0 6px 6px 6px;
-          }
-        `}
+  div {
+    margin-left: 15px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: transparent;
+    padding: 0;
+
+    h3 {
+      font-size: 14px;
+      color: ${({ theme }) => theme.colors.primary};
+    }
+
+    span {
+      color: ${({ theme }) => theme.colors.secondary};
+      font-size: 12px;
+    }
+
+    p {
+      color: ${({ theme }) => theme.colors.primary};
+      font-size: 18px;
+      width: 900px;
+      word-wrap: break-word;
+      margin-top: 5px;
+    }
+  }
 `;
