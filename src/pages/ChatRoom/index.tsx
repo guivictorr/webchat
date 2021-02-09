@@ -1,12 +1,14 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
+
 import useMessages from '../../hooks/useMessages';
+import { CurrentUserProps } from '../../interfaces';
+import { auth } from '../../firebase';
 
 import ChatMessage from '../../components/ChatMessage';
+import SignOut from '../../components/SignOut';
 
 import { ChatRoomContainer } from './styles';
-import { auth } from '../../firebase';
-import { CurrentUserProps } from '../../interfaces';
 
 const Chat: React.FC = () => {
   const [error, setError] = useState('');
@@ -51,14 +53,10 @@ const Chat: React.FC = () => {
     <ChatRoomContainer error={error}>
       <aside>
         <header>
-          <p>Title</p>
+          <p>Hello!</p>
         </header>
         <main>
-          <p>
-            Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-            Voluptatibus nihil, atque rem at modi consequuntur velit id ut amet
-            perspiciatis dicta autem. Ab, tempore earum?
-          </p>
+          <p>Rooms system soon.</p>
         </main>
         <footer>
           <img src={photoURL} alt={displayName} />
@@ -67,7 +65,8 @@ const Chat: React.FC = () => {
       </aside>
       <main>
         <header>
-          <p>Title</p>
+          <p>Chat</p>
+          <SignOut />
         </header>
         <ul>
           {messages?.map(message => (

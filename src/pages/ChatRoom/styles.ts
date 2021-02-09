@@ -64,6 +64,7 @@ export const ChatRoomContainer = styled.div<ChatRoomProps>`
       width: 100%;
       display: flex;
       align-items: center;
+      justify-content: space-between;
       padding: 20px 40px;
       background-color: ${({ theme }) => theme.colors.contrastBackground};
       color: ${({ theme }) => theme.colors.primary};
