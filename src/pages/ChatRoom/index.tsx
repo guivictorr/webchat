@@ -56,7 +56,17 @@ const Chat: React.FC = () => {
           <p>Hello!</p>
         </header>
         <main>
-          <p>This project was developed by <a href="https://github.com/guivictorr" target="_blank" rel="noopener noreferrer">Guilherme Victor</a> and is't storing any personal data from you.</p>
+          <p>
+            This project was developed by
+            <a
+              href="https://github.com/guivictorr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Guilherme Victor
+            </a>
+            and is not storing any personal data from you.
+          </p>
         </main>
         <footer>
           <img src={photoURL} alt={displayName} />

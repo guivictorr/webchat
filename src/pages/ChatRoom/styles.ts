@@ -59,6 +59,12 @@ export const ChatRoomContainer = styled.div<ChatRoomProps>`
     flex-direction: column;
     flex: 1;
 
+    a {
+      text-decoration: none;
+      color: ${({ theme }) => theme.colors.buttonColor};
+      margin: 0 5px;
+    }
+
     header {
       height: 70px;
       width: 100%;
