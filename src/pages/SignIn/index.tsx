@@ -1,5 +1,4 @@
-import React from 'react';
-import { FaTheaterMasks } from 'react-icons/fa';
+import React, { FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import { firebase, auth } from '../../firebase';
@@ -9,7 +8,6 @@ import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
 import googleicon from '../../assets/googleicon.svg';
 
-import Input from '../../components/Input';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
 
@@ -24,24 +22,22 @@ const SignIn: React.FC = () => {
     push('/chat');
   };
 
+  const handleAnonymousLogin = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    await auth.signInAnonymously();
+    push('/chat');
+  };
+
   return (
     <SignInContainer>
       <main>
         <img src={logo} alt="WebChat" loading="lazy" />
-        <Form title="Log In" subTitle="WELCOME">
-          <fieldset>
-            <Input
-              icon={FaTheaterMasks}
-              type="text"
-              placeholder="Enter as anonymous"
-              maxLength={20}
-            />
-            <Button
-              title="Log In"
-              backgroundColor={theme.colors.buttonColor}
-              type="submit"
-            />
-          </fieldset>
+        <Form title="Log In" subTitle="WELCOME" onSubmit={handleAnonymousLogin}>
+          <Button
+            title="Log In as anonymous"
+            backgroundColor={theme.colors.buttonColor}
+            type="submit"
+          />
           <h2>OR</h2>
           <Button
             title="Log in with Google"

@@ -69,8 +69,10 @@ const Chat: React.FC = () => {
           </p>
         </main>
         <footer>
-          <img src={photoURL} alt={displayName} />
-          <p>{displayName}</p>
+          <figure>
+            <img src={photoURL} alt={displayName} />
+          </figure>
+          <p>{displayName || 'Anonymous'}</p>
         </footer>
       </aside>
       <main>
