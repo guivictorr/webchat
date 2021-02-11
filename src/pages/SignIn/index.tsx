@@ -1,4 +1,4 @@
-import React, { FormEvent } from 'react';
+import React from 'react';
 import { FaTheaterMasks } from 'react-icons/fa';
 import { useHistory } from 'react-router-dom';
 
@@ -18,10 +18,7 @@ import SignInContainer from './styles';
 const SignIn: React.FC = () => {
   const { push } = useHistory();
 
-  const handleSignInWithGoogle = async (
-    event: FormEvent<HTMLButtonElement>,
-  ) => {
-    event.preventDefault();
+  const handleSignInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
     await auth.signInWithPopup(provider);
     push('/chat');
