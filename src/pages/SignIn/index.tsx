@@ -49,7 +49,9 @@ const SignIn: React.FC = () => {
         </Form>
       </main>
       <section>
-        <img src={illustration} alt="Your place to talk" loading="lazy" />
+        <figure>
+          <img src={illustration} alt="Your place to talk" loading="lazy" />
+        </figure>
       </section>
     </SignInContainer>
   );

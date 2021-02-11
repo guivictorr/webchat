@@ -46,6 +46,7 @@ export const ChatRoomContainer = styled.div<ChatRoomProps>`
         width: 40px;
         height: 40px;
         background-color: ${({ theme }) => theme.colors.buttonColor};
+
         img {
           width: 100%;
           border-radius: ${({ theme }) => theme.borderRadius};

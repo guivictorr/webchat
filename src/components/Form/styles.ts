@@ -5,7 +5,7 @@ export const Container = styled.form`
   flex-direction: column;
   justify-content: space-between;
   width: 340px;
-  margin-top: 70px;
+  margin: 70px 20px;
 
   header {
     margin-bottom: 20px;

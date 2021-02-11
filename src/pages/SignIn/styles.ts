@@ -44,9 +44,33 @@ const SignInContainer = styled.main`
     align-items: center;
     justify-content: center;
 
-    img {
+    figure {
       width: 557px;
       height: 535px;
+      margin: 20px;
+
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  @media (max-width: 977px) {
+    flex-direction: column;
+
+    main {
+      width: 100%;
+    }
+
+    section {
+      display: none;
+    }
+  }
+
+  @media (max-width: 380px) {
+    form {
+      transform: scale(0.8);
     }
   }
 `;
