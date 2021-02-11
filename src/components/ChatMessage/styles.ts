@@ -7,10 +7,16 @@ export const ChatMessageContainer = styled.li`
     margin-top: 50px;
   }
 
-  img {
+  figure {
     width: 52px;
     height: 52px;
+    background-color: ${({ theme }) => theme.colors.buttonColor};
     border-radius: ${({ theme }) => theme.borderRadius};
+
+    img {
+      border-radius: ${({ theme }) => theme.borderRadius};
+      width: 100%;
+    }
   }
 
   div {

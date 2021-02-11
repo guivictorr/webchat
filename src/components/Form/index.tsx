@@ -3,9 +3,9 @@ import { FormProps } from '../../interfaces';
 
 import { Container } from './styles';
 
-const Form: React.FC<FormProps> = ({ children, title, subTitle }) => {
+const Form: React.FC<FormProps> = ({ children, title, subTitle, ...rest }) => {
   return (
-    <Container>
+    <Container {...rest}>
       <header>
         <h1>{subTitle}</h1>
         <span>{title}</span>

@@ -11,9 +11,11 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
 
   return (
     <ChatMessageContainer>
-      <img src={photoURL} alt={name} />
+      <figure>
+        <img src={photoURL} alt={name} />
+      </figure>
       <div>
-        <h3>{name}</h3>
+        <h3>{name || 'Anonymous'}</h3>
         <span>
           {createdAt !== null && handleMessageDate(createdAt.seconds)}
         </span>

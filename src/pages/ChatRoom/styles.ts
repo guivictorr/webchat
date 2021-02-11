@@ -41,10 +41,15 @@ export const ChatRoomContainer = styled.div<ChatRoomProps>`
       padding: 15px 40px;
       background-color: ${({ theme }) => theme.colors.secondaryBackground};
 
-      img {
+      figure {
+        border-radius: ${({ theme }) => theme.borderRadius};
         width: 40px;
         height: 40px;
-        border-radius: ${({ theme }) => theme.borderRadius};
+        background-color: ${({ theme }) => theme.colors.buttonColor};
+        img {
+          width: 100%;
+          border-radius: ${({ theme }) => theme.borderRadius};
+        }
       }
 
       p {
