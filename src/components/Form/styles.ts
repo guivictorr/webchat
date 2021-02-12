@@ -5,17 +5,16 @@ export const Container = styled.form`
   flex-direction: column;
   justify-content: space-between;
   width: 340px;
-  margin-top: 70px;
 
   header {
     margin-bottom: 20px;
     h1 {
-      font-size: 18px;
+      font-size: 1.8rem;
       color: ${({ theme }) => theme.colors.secondary};
     }
 
     span {
-      font-size: 48px;
+      font-size: 4.8rem;
       color: ${({ theme }) => theme.colors.primary};
     }
   }

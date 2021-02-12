@@ -8,7 +8,7 @@ export const Container = styled.button<ButtonProps>`
   border: none;
   background-color: ${({ backgroundColor }) => backgroundColor};
   color: ${({ theme }) => theme.colors.buttonText};
-  font-size: 18px;
+  font-size: 1.8rem;
   cursor: pointer;
   display: flex;
   align-items: center;
