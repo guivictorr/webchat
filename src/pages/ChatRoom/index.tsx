@@ -8,7 +8,7 @@ import { auth } from '../../firebase';
 import ChatMessage from '../../components/ChatMessage';
 import SignOut from '../../components/SignOut';
 
-import { ChatRoomContainer } from './styles';
+import { ChatRoomContainer, SideBar, ChatRoom } from './styles';
 
 const Chat: React.FC = () => {
   const [error, setError] = useState('');
@@ -50,8 +50,8 @@ const Chat: React.FC = () => {
   }, [handleScrollChatToBottom]);
 
   return (
-    <ChatRoomContainer error={error}>
-      <aside>
+    <ChatRoomContainer>
+      <SideBar>
         <header>
           <p>Hello!</p>
         </header>
@@ -74,12 +74,12 @@ const Chat: React.FC = () => {
           </figure>
           <p>{displayName || 'Anonymous'}</p>
         </footer>
-      </aside>
-      <main>
-        <header>
+      </SideBar>
+      <ChatRoom error={error}>
+        <nav>
           <p>Chat</p>
           <SignOut />
-        </header>
+        </nav>
         <ul>
           {messages?.map(message => (
             <ChatMessage key={message.id} message={message} />
@@ -100,7 +100,7 @@ const Chat: React.FC = () => {
             </button>
           </form>
         </footer>
-      </main>
+      </ChatRoom>
     </ChatRoomContainer>
   );
 };

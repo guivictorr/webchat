@@ -6,16 +6,23 @@ export default createGlobalStyle`
     padding: 0;
     box-sizing: border-box;
     outline: transparent;
-
   }
 
-  body,html,#root {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
+  html {
+    font-size: 62.5%;
+
+    @media (max-width: 435px) {
+      font-size: 50%;
+    }
   }
 
   body {
     font-family: 'Noto Sans', sans-serif;
+    font-size: 1.6rem;
+  }
+
+  #root {
+    height: 100vh;
+    width: 100vw;
   }
 `;

@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChatMessageProps } from '../../interfaces';
-import { ChatMessageContainer } from './styles';
+import { ChatMessageContainer, TextContent } from './styles';
 
 const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
   const { text, photoURL, name, createdAt } = message;
@@ -14,13 +14,13 @@ const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
       <figure>
         <img src={photoURL} alt={name} />
       </figure>
-      <div>
+      <TextContent>
         <h3>{name || 'Anonymous'}</h3>
         <span>
           {createdAt !== null && handleMessageDate(createdAt.seconds)}
         </span>
         <p>{text}</p>
-      </div>
+      </TextContent>
     </ChatMessageContainer>
   );
 };

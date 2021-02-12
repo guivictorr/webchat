@@ -11,34 +11,33 @@ const SignInContainer = styled.main`
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: space-between;
 
     img {
       transform: scale(0.7);
     }
 
-    p {
-      color: ${({ theme }) => theme.colors.primary};
-      font-size: 14px;
-
-      a {
-        margin-left: 5px;
-        text-decoration: none;
-        color: ${({ theme }) => theme.colors.buttonColor};
-        font-weight: bold;
-      }
-    }
-
     h2 {
-      font-size: 18px;
+      font-size: 1.8rem;
       color: ${({ theme }) => theme.colors.secondary};
       align-self: center;
       margin: 16px 0;
     }
+
+    footer {
+      padding: 20px 40px;
+      color: ${({ theme }) => theme.colors.primary};
+
+      a {
+        text-decoration: none;
+        color: ${({ theme }) => theme.colors.buttonColor};
+        margin: 0 5px;
+      }
+    }
   }
 
   section {
-    width: 840px;
+    width: 60%;
     background-color: ${({ theme }) => theme.colors.buttonColor};
     display: flex;
     align-items: center;
@@ -56,7 +55,7 @@ const SignInContainer = styled.main`
     }
   }
 
-  @media (max-width: 977px) {
+  @media (max-width: 960px) {
     flex-direction: column;
 
     main {

@@ -31,7 +31,9 @@ const SignIn: React.FC = () => {
   return (
     <SignInContainer>
       <main>
-        <img src={logo} alt="WebChat" loading="lazy" />
+        <header>
+          <img src={logo} alt="WebChat" loading="lazy" />
+        </header>
         <Form title="Log In" subTitle="WELCOME" onSubmit={handleAnonymousLogin}>
           <Button
             title="Log In as anonymous"
@@ -47,6 +49,18 @@ const SignIn: React.FC = () => {
             type="button"
           />
         </Form>
+        <footer>
+          <p>
+            Made with 💙 by
+            <a
+              href="https://github.com/guivictorr"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Guilherme Victor
+            </a>
+          </p>
+        </footer>
       </main>
       <section>
         <figure>

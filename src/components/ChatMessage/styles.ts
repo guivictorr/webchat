@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const ChatMessageContainer = styled.li`
   display: flex;
+  width: 100%;
 
   & + li {
     margin-top: 50px;
@@ -12,38 +13,49 @@ export const ChatMessageContainer = styled.li`
     height: 52px;
     background-color: ${({ theme }) => theme.colors.buttonColor};
     border-radius: ${({ theme }) => theme.borderRadius};
+    overflow: hidden;
 
     img {
-      border-radius: ${({ theme }) => theme.borderRadius};
       width: 100%;
+      object-fit: cover;
+    }
+
+    @media (max-width: 750px) {
+      width: 34px;
+      height: 34px;
+    }
+
+    @media (max-width: 435px) {
+      display: none;
+      img {
+        display: none;
+      }
     }
   }
+`;
 
-  div {
-    margin-left: 15px;
+export const TextContent = styled.section`
+  margin-left: 15px;
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  color: ${({ theme }) => theme.colors.primary};
 
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    background: transparent;
-    padding: 0;
+  @media (max-width: 750px) {
+    width: 300px;
+  }
 
-    h3 {
-      font-size: 14px;
-      color: ${({ theme }) => theme.colors.primary};
-    }
+  h3 {
+    font-size: 1.4rem;
+  }
 
-    span {
-      color: ${({ theme }) => theme.colors.secondary};
-      font-size: 12px;
-    }
+  span {
+    color: ${({ theme }) => theme.colors.secondary};
+    font-size: 1.2rem;
+  }
 
-    p {
-      color: ${({ theme }) => theme.colors.primary};
-      font-size: 18px;
-      width: 900px;
-      word-wrap: break-word;
-      margin-top: 5px;
-    }
+  p {
+    font-size: 1.8rem;
+    word-wrap: break-word;
   }
 `;
