@@ -74,7 +74,7 @@ const SignIn: React.FC = () => {
   };
 
   return (
-    <SignInContainer>
+    <SignInContainer exit={{ opacity: 0 }}>
       <motion.main variants={mainAnimation} initial="hidden" animate="show">
         <motion.header variants={mainChildrenAnimation}>
           <img src={logo} alt="WebChat" loading="lazy" />
