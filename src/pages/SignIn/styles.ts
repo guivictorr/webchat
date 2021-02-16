@@ -1,9 +1,11 @@
 import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
-const SignInContainer = styled.main`
+const SignInContainer = styled(motion.main)`
   height: 100%;
   width: 100%;
   display: flex;
+  background-color: ${({ theme }) => theme.colors.secondaryBackground};
 
   main {
     flex: 1;
@@ -15,6 +17,36 @@ const SignInContainer = styled.main`
 
     img {
       transform: scale(0.7);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      width: 340px;
+
+      header {
+        margin-bottom: 20px;
+        h1 {
+          font-size: 1.8rem;
+          color: ${({ theme }) => theme.colors.secondary};
+        }
+
+        span {
+          font-size: 4.8rem;
+          color: ${({ theme }) => theme.colors.primary};
+        }
+      }
+
+      fieldset {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-direction: column;
+        width: 100%;
+        border: none;
+        height: 110px;
+      }
     }
 
     h2 {

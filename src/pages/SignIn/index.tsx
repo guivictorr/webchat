@@ -1,5 +1,6 @@
 import React, { FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 import { firebase, auth } from '../../firebase';
 import { theme } from '../../utils/theme.json';
@@ -9,7 +10,6 @@ import logo from '../../assets/logo.svg';
 import googleicon from '../../assets/googleicon.svg';
 
 import Button from '../../components/Button';
-import Form from '../../components/Form';
 
 import SignInContainer from './styles';
 
@@ -28,13 +28,65 @@ const SignIn: React.FC = () => {
     push('/chat');
   };
 
+  const sectionAnimation = {
+    hidden: {
+      width: 0,
+    },
+    show: {
+      width: '60%',
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.5,
+        duration: 2,
+        type: 'spring',
+        stiffness: 50,
+      },
+    },
+  };
+
+  const sectionChildrenAnimation = {
+    hidden: { y: 20, opacity: 0 },
+    show: { y: 0, opacity: 1, transition: { duration: 1 } },
+  };
+
+  const mainAnimation = {
+    hidden: {
+      opacity: 0,
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.5,
+        delayChildren: 1,
+      },
+    },
+  };
+
+  const mainChildrenAnimation = {
+    hidden: {
+      x: -50,
+      opacity: 0,
+    },
+    show: {
+      x: 0,
+      opacity: 1,
+    },
+  };
+
   return (
-    <SignInContainer>
-      <main>
-        <header>
+    <SignInContainer exit={{ opacity: 0 }}>
+      <motion.main variants={mainAnimation} initial="hidden" animate="show">
+        <motion.header variants={mainChildrenAnimation}>
           <img src={logo} alt="WebChat" loading="lazy" />
-        </header>
-        <Form title="Log In" subTitle="WELCOME" onSubmit={handleAnonymousLogin}>
+        </motion.header>
+        <motion.form
+          onSubmit={handleAnonymousLogin}
+          variants={mainChildrenAnimation}
+        >
+          <header>
+            <h1>WELCOME</h1>
+            <span>Sign In</span>
+          </header>
           <Button
             title="Log In as anonymous"
             backgroundColor={theme.colors.buttonColor}
@@ -48,8 +100,8 @@ const SignIn: React.FC = () => {
             onClick={handleSignInWithGoogle}
             type="button"
           />
-        </Form>
-        <footer>
+        </motion.form>
+        <motion.footer variants={mainChildrenAnimation}>
           <p>
             Made with 💙 by
             <a
@@ -60,13 +112,22 @@ const SignIn: React.FC = () => {
               Guilherme Victor
             </a>
           </p>
-        </footer>
-      </main>
-      <section>
-        <figure>
-          <img src={illustration} alt="Your place to talk" loading="lazy" />
-        </figure>
-      </section>
+        </motion.footer>
+      </motion.main>
+      <motion.section
+        variants={sectionAnimation}
+        initial="hidden"
+        animate="show"
+      >
+        <motion.figure variants={sectionChildrenAnimation}>
+          <motion.img
+            variants={sectionChildrenAnimation}
+            src={illustration}
+            alt="Your place to talk"
+            loading="lazy"
+          />
+        </motion.figure>
+      </motion.section>
     </SignInContainer>
   );
 };
