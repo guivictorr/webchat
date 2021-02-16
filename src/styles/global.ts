@@ -19,6 +19,7 @@ export default createGlobalStyle`
   body {
     font-family: 'Noto Sans', sans-serif;
     font-size: 1.6rem;
+    background-color: #0B090C;
   }
 
   #root {
