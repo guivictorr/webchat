@@ -1,18 +1,12 @@
 import React, { createContext, useContext, useState } from 'react';
 import faker from 'faker';
+
+import {
+  AuthContextData,
+  AuthProviderProps,
+  CurrentUserProps,
+} from '../interfaces';
 import { firebase, auth } from '../firebase';
-import { CurrentUserProps } from '../interfaces';
-
-type AuthContextData = {
-  user: CurrentUserProps;
-  signInWithGoogle(): void;
-  signInAnonymous(): void;
-  signOut(): void;
-};
-
-type AuthProviderProps = {
-  children: React.ReactNode;
-};
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 

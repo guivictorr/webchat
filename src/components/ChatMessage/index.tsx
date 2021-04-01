@@ -1,8 +1,10 @@
 import React from 'react';
+
 import { ChatMessageProps } from '../../interfaces';
+
 import { ChatMessageContainer, TextContent } from './styles';
 
-const ChatMessage: React.FC<ChatMessageProps> = ({ message }) => {
+const ChatMessage = ({ message }: ChatMessageProps) => {
   const { text, photoURL, name, createdAt } = message;
 
   const handleMessageDate = (timestamp: number) => {

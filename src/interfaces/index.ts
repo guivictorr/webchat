@@ -26,6 +26,12 @@ export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
   subTitle: string;
 }
 
+export interface CurrentUserProps {
+  photoURL: string;
+  uid: string;
+  displayName: string;
+}
+
 export interface MessageProps {
   id: string;
   text: string;
@@ -38,17 +44,17 @@ export interface MessageProps {
   name: string;
 }
 
-export interface CurrentUserProps {
-  photoURL: string;
-  uid: string;
-  displayName: string;
-}
-
 export interface ChatMessageProps {
   message: MessageProps;
 }
 
-export interface UseMessagesProps {
-  messages: MessageProps[] | undefined;
-  handleAddMessage(text: string): Promise<void>;
+export interface AuthContextData {
+  user: CurrentUserProps;
+  signInWithGoogle(): void;
+  signInAnonymous(): void;
+  signOut(): void;
+}
+
+export interface AuthProviderProps {
+  children: React.ReactNode;
 }

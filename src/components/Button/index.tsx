@@ -1,14 +1,10 @@
 import React from 'react';
+
 import { ButtonProps } from '../../interfaces';
 
 import { Container } from './styles';
 
-const Button: React.FC<ButtonProps> = ({
-  title,
-  backgroundColor,
-  image,
-  ...rest
-}) => {
+const Button = ({ title, backgroundColor, image, ...rest }: ButtonProps) => {
   return (
     <Container backgroundColor={backgroundColor} {...rest}>
       {image ? <img src={image} alt={title} /> : <p>{title}</p>}

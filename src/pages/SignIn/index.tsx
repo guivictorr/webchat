@@ -13,7 +13,7 @@ import Button from '../../components/Button';
 
 import SignInContainer from './styles';
 
-const SignIn: React.FC = () => {
+const SignIn = () => {
   const { push } = useHistory();
   const { signInAnonymous, signInWithGoogle } = useAuth();
 

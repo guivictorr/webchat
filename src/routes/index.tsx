@@ -8,9 +8,10 @@ import {
 
 import SignIn from '../pages/SignIn';
 import ChatRoom from '../pages/ChatRoom';
+
 import { useAuth } from '../context/auth';
 
-const Routes: React.FC = () => {
+const Routes = () => {
   const { user } = useAuth();
   return (
     <Router>

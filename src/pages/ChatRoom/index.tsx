@@ -1,16 +1,16 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
-
 import { motion } from 'framer-motion';
+
 import useMessages from '../../hooks/useMessages';
+import { useAuth } from '../../context/auth';
 
 import ChatMessage from '../../components/ChatMessage';
 import SignOut from '../../components/SignOut';
 
 import { ChatRoomContainer, SideBar, ChatRoom } from './styles';
-import { useAuth } from '../../context/auth';
 
-const Chat: React.FC = () => {
+const Chat = () => {
   const [error, setError] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const messageEndRef = useRef<HTMLDivElement>(null);
