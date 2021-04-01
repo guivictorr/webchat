@@ -3,20 +3,21 @@ import { IoMdSend } from 'react-icons/io';
 
 import { motion } from 'framer-motion';
 import useMessages from '../../hooks/useMessages';
-import { CurrentUserProps } from '../../interfaces';
-import { auth } from '../../firebase';
 
 import ChatMessage from '../../components/ChatMessage';
 import SignOut from '../../components/SignOut';
 
 import { ChatRoomContainer, SideBar, ChatRoom } from './styles';
+import { useAuth } from '../../context/auth';
 
 const Chat: React.FC = () => {
   const [error, setError] = useState('');
   const [messageValue, setMessageValue] = useState('');
   const messageEndRef = useRef<HTMLDivElement>(null);
   const { messages, handleAddMessage } = useMessages();
-  const { photoURL, displayName } = auth.currentUser as CurrentUserProps;
+  const {
+    user: { displayName, photoURL },
+  } = useAuth();
 
   const handleScrollChatToBottom = () => {
     if (messageEndRef.current !== null) {
@@ -92,7 +93,7 @@ const Chat: React.FC = () => {
           <figure>
             <img src={photoURL} alt={displayName} />
           </figure>
-          <p>{displayName || 'Anonymous'}</p>
+          <p>{displayName}</p>
         </footer>
       </SideBar>
       <ChatRoom error={error}>

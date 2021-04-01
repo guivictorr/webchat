@@ -1,19 +1,17 @@
 import React from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
 import {
   BrowserRouter as Router,
   Route,
   Switch,
   Redirect,
 } from 'react-router-dom';
-import { auth } from '../firebase';
 
 import SignIn from '../pages/SignIn';
 import ChatRoom from '../pages/ChatRoom';
+import { useAuth } from '../context/auth';
 
 const Routes: React.FC = () => {
-  const [user] = useAuthState(auth);
-
+  const { user } = useAuth();
   return (
     <Router>
       <Switch>

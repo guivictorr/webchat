@@ -2,7 +2,7 @@ import React, { FormEvent } from 'react';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import { firebase, auth } from '../../firebase';
+import { useAuth } from '../../context/auth';
 import { theme } from '../../utils/theme.json';
 
 import illustration from '../../assets/illustration.svg';
@@ -15,16 +15,16 @@ import SignInContainer from './styles';
 
 const SignIn: React.FC = () => {
   const { push } = useHistory();
+  const { signInAnonymous, signInWithGoogle } = useAuth();
 
   const handleSignInWithGoogle = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    await auth.signInWithPopup(provider);
+    await signInWithGoogle();
     push('/chat');
   };
 
   const handleAnonymousLogin = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    await auth.signInAnonymously();
+    signInAnonymous();
     push('/chat');
   };
 

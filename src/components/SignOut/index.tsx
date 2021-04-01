@@ -1,14 +1,19 @@
 import React from 'react';
-import { auth } from '../../firebase';
+import { useHistory } from 'react-router-dom';
+import { useAuth } from '../../context/auth';
 
 import { Container } from './styles';
 
 const SignOut: React.FC = () => {
-  const handleSignOut = () => {
-    auth.signOut();
+  const { signOut } = useAuth();
+  const { push } = useHistory();
+
+  const signOutAndNavigate = () => {
+    signOut();
+    push('/');
   };
 
-  return <Container onClick={handleSignOut}>Sign Out</Container>;
+  return <Container onClick={signOutAndNavigate}>Sign Out</Container>;
 };
 
 export default SignOut;
