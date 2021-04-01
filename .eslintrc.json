@@ -37,7 +37,7 @@
       }
     ],
     "no-use-before-define": "off",
-    "prettier/prettier": "error",
+    "prettier/prettier": ["error", {"endOfLine": "auto"}],
     "react/prop-types": "off",
     "react/jsx-props-no-spreading": "off",
     "no-console": "off",
