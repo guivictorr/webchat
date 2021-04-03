@@ -43,6 +43,7 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
     };
 
     localStorage.setItem('wbuser', JSON.stringify(anonymousUser));
+    auth.signInAnonymously();
     setUser(anonymousUser);
   };
 
