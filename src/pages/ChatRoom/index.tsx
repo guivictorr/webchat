@@ -1,6 +1,5 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
-import { motion } from 'framer-motion';
 
 import useMessages from '../../hooks/useMessages';
 import { useAuth } from '../../context/auth';
@@ -51,33 +50,14 @@ const Chat = () => {
     handleScrollChatToBottom();
   }, [handleScrollChatToBottom]);
 
-  const sideBarAnimation = {
-    hidden: {
-      width: 0,
-      opacity: 0,
-    },
-    show: {
-      opacity: 1,
-      width: 360,
-      transition: {
-        delay: 0.5,
-        type: 'spring',
-        stiffness: 30,
-      },
-    },
-  };
-
   return (
-    <ChatRoomContainer animate={{ opacity: 1 }} initial={{ opacity: 0 }}>
-      <SideBar variants={sideBarAnimation} initial="hidden" animate="show">
+    <ChatRoomContainer>
+      <SideBar>
         <header>
           <p>Hello!</p>
         </header>
         <main>
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1, transition: { delay: 1.5 } }}
-          >
+          <p>
             This project was developed by
             <a
               href="https://github.com/guivictorr"
@@ -87,7 +67,7 @@ const Chat = () => {
               Guilherme Victor
             </a>
             and is not storing any personal data from you.
-          </motion.p>
+          </p>
         </main>
         <footer>
           <figure>

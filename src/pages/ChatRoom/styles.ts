@@ -1,18 +1,17 @@
-import { motion } from 'framer-motion';
 import styled, { css } from 'styled-components';
 
 interface ChatRoomProps {
   error: string;
 }
 
-export const ChatRoomContainer = styled(motion.div)`
+export const ChatRoomContainer = styled.div`
   width: 100%;
   height: 100%;
   display: flex;
   background-color: ${({ theme }) => theme.colors.primaryBackground};
 `;
 
-export const SideBar = styled(motion.aside)`
+export const SideBar = styled.aside`
   height: 100%;
   width: 360px;
   display: flex;
