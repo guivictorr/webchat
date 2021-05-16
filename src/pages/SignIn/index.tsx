@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 
 import { useAuth } from '../../context/auth';
 
-import Button from '../../components/Button';
+import Button from '../../components/Button/styles';
 
 import illustration from '../../assets/illustration.svg';
 import logo from '../../assets/logo.svg';
@@ -12,7 +12,6 @@ import googleicon from '../../assets/googleicon.svg';
 
 import animations from './animations';
 import SignInContainer from './styles';
-import theme from '../../styles/theme';
 
 const SignIn = () => {
   const { push } = useHistory();
@@ -46,20 +45,17 @@ const SignIn = () => {
             <h1>WELCOME</h1>
             <span>Sign In</span>
           </header>
-          <Button
-            title="Log In as anonymous"
-            backgroundColor={theme.colors.buttonColor}
-            onClick={handleAnonymousLogin}
-            type="button"
-          />
+          <Button onClick={handleAnonymousLogin} type="button">
+            Log In as anonymous
+          </Button>
           <h2>OR</h2>
           <Button
-            title="Log in with Google"
-            image={googleicon}
-            backgroundColor="#f5f5f5"
+            backgroundColor="buttonText"
             onClick={handleSignInWithGoogle}
             type="button"
-          />
+          >
+            <img src={googleicon} alt="Login with google" />
+          </Button>
         </motion.form>
         <motion.footer variants={mainChildrenAnimation}>
           <p>

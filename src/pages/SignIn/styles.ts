@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 
-const SignInContainer = styled(motion.main)`
+const SignInContainer = styled(motion.div)`
   height: 100%;
   width: 100%;
   display: flex;
