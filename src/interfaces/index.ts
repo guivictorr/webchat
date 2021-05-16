@@ -1,10 +1,11 @@
 import {
-  ButtonHTMLAttributes,
   ComponentType,
   FormHTMLAttributes,
   InputHTMLAttributes,
+  ReactNode,
 } from 'react';
 import { IconBaseProps } from 'react-icons/lib';
+import theme from '../styles/theme';
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   icon: ComponentType<IconBaseProps>;
@@ -15,10 +16,12 @@ export interface InputStyles {
   isFilled: boolean;
 }
 
-export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  title?: string;
-  image?: string;
-  backgroundColor: string;
+export interface ButtonProps {
+  children: ReactNode;
+}
+
+export interface ButtonStyleProps {
+  backgroundColor?: keyof typeof theme.colors;
 }
 
 export interface FormProps extends FormHTMLAttributes<HTMLFormElement> {
