@@ -3,27 +3,11 @@ import React from 'react';
 import { ChatMessageProps } from '../../interfaces';
 
 import { ChatMessageContainer, TextContent } from './styles';
+import { chatMessageAnimation } from './animations';
+import formatDate from '../../utils/formatDate';
 
 const ChatMessage = ({ message }: ChatMessageProps) => {
   const { text, photoURL, name, createdAt } = message;
-
-  const handleMessageDate = (timestamp: number) => {
-    return new Date(timestamp * 1000).toLocaleDateString('pt-br');
-  };
-
-  const chatMessageAnimation = {
-    hidden: {
-      x: -20,
-      opacity: 0,
-    },
-    show: {
-      x: 0,
-      opacity: 1,
-      transtion: {
-        delay: 5,
-      },
-    },
-  };
 
   return (
     <ChatMessageContainer
@@ -36,9 +20,7 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
       </figure>
       <TextContent>
         <h3>{name || 'Anonymous'}</h3>
-        <span>
-          {createdAt !== null && handleMessageDate(createdAt.seconds)}
-        </span>
+        <span>{formatDate(createdAt.seconds * 1000)}</span>
         <p>{text}</p>
       </TextContent>
     </ChatMessageContainer>
