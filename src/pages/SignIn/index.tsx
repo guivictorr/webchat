@@ -24,15 +24,13 @@ const SignIn = () => {
     sectionChildrenAnimation,
   } = animations;
 
-  const handleSignInWithGoogle = async () => {
-    await signInWithGoogle();
+  const signIn = (callback: () => void) => async () => {
+    await callback();
     push('/chat');
   };
 
-  const handleAnonymousLogin = () => {
-    signInAnonymous();
-    push('/chat');
-  };
+  const handleGoogleSignIn = signIn(signInWithGoogle);
+  const handleAnonymousSignIn = signIn(signInAnonymous);
 
   return (
     <SignInContainer exit={{ opacity: 0 }}>
@@ -45,13 +43,13 @@ const SignIn = () => {
             <h1>WELCOME</h1>
             <span>Sign In</span>
           </header>
-          <Button onClick={handleAnonymousLogin} type="button">
+          <Button onClick={handleAnonymousSignIn} type="button">
             Log In as anonymous
           </Button>
           <h2>OR</h2>
           <Button
             backgroundColor="buttonText"
-            onClick={handleSignInWithGoogle}
+            onClick={handleGoogleSignIn}
             type="button"
           >
             <img src={googleicon} alt="Login with google" />
