@@ -1,9 +1,9 @@
 <h1 align='center'>💬 WebChat</h1>
-<p align='center'>Site com autenticação através do google, integrado com um chat em tempo real.</p>
+<p align='center'>Site with google authentication, anonymously login and real time chat</p>
 
-## 🛠 Tecnologias
+## 🛠 Technologies
 
-Esse projeto foi desenvolvido com as seguintes tecnologias:
+This project was developed with the following technologies:
 
 Frontend
 - [ReactJS](https://pt-br.reactjs.org)
@@ -14,32 +14,27 @@ Frontend
 Backend
 - [Firebase](https://firebase.google.com/)
 
-## 📱💻 Instruções
+## 📱💻 Instructions
 
 ```
-## 1. Clonar repositório
+## 1. Clone repo
 git clone https://github.com/guivictorr/webchat.git
 
-## 2. Entrar na pasta
+## 2. Change to project folder
 cd webchat
 
-## 3. Instalar as dependências
+## 3. Install dependencies
 yarn
 
-## 4. Rodar a aplicação
+## 4. Run the app
 yarn start
 ```
 
-## 🤔 Como contribuir
+## 🤔 How to contribute
 
-- Faça um fork desse repositório;
-- Cria uma branch com a sua feature: `git checkout -b minha-feature`;
-- Faça commit das suas alterações: `git commit -m 'feat: Minha nova feature'`;
-- Faça push para a sua branch: `git push origin minha-feature`.
+- Fork this repository;
+- Create a branch with your feature: `git checkout -b my-feature`;
+- Commit your changes: `git commit -m 'feat: My new feature'`;
+- Push to your branch: `git push origin my-feature`.
 
-Depois que o merge da sua pull request for feito, você pode deletar a sua branch.
-
-## 📝 Licença
-
-Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](https://github.com/guivictorr/webchat/blob/master/LICENSE) para mais detalhes.
- 
+Once your pull request has been merged, you can delete your branch.
