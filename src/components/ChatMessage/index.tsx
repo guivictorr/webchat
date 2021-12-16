@@ -20,7 +20,7 @@ const ChatMessage = ({ message }: ChatMessageProps) => {
       </figure>
       <TextContent>
         <h3>{name || 'Anonymous'}</h3>
-        <span>{formatDate(createdAt.seconds * 1000)}</span>
+        <span>{createdAt && formatDate(createdAt.seconds * 1000)}</span>
         <p>{text}</p>
       </TextContent>
     </ChatMessageContainer>

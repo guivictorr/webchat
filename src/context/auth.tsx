@@ -36,9 +36,10 @@ const AuthProvider = ({ children }: AuthProviderProps) => {
   };
 
   const signInAnonymous = async () => {
+    const displayName = `guest${faker.datatype.number()}`;
     const anonymousUser: CurrentUserProps = {
-      displayName: `guest${faker.datatype.number()}`,
-      photoURL: faker.image.avatar(),
+      displayName,
+      photoURL: `https://source.boringavatars.com/marble/152/${displayName}?colors=0B090C,2f80ed`,
       uid: faker.datatype.uuid(),
     };
 

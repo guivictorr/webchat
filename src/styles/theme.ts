@@ -9,7 +9,7 @@ const theme = {
     secondaryBackground: '#0b090c',
     contrastBackground: '#120f13',
   },
-  borderRadius: '8px',
+  borderRadius: '50px',
 };
 
 export default theme;
