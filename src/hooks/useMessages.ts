@@ -1,6 +1,6 @@
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 import { useAuth } from 'context/auth';
-import { firestore, firebase } from 'firebase';
+import { firestore, firebase } from '@firebase';
 import { MessageProps } from 'interfaces';
 
 const useMessages = () => {

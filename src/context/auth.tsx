@@ -6,7 +6,7 @@ import {
   AuthProviderProps,
   CurrentUserProps,
 } from 'interfaces';
-import { firebase, auth } from 'firebase';
+import { firebase, auth } from '@firebase';
 
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
