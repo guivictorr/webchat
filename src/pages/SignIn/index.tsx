@@ -9,7 +9,6 @@ import Button from 'components/Button';
 
 import illustration from 'assets/illustration.svg';
 import logo from 'assets/logo.svg';
-import googleicon from 'assets/googleicon.svg';
 
 import {
   mainAnimation,
