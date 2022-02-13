@@ -5,15 +5,15 @@ export const ChatMessageContainer = styled(motion.li)`
   display: flex;
   width: 100%;
 
-  & + li {
-    margin-top: 50px;
+  &:not(:first-child) {
+    margin-bottom: 4.2rem;
   }
 
   figure {
     width: 52px;
     height: 52px;
     background-color: ${({ theme }) => theme.colors.buttonColor};
-    border-radius: ${({ theme }) => theme.borderRadius};
+    border-radius: ${({ theme }) => theme.borderRadius.rounded};
     overflow: hidden;
 
     img {

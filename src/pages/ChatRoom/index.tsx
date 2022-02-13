@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
 
 import useMessages from 'hooks/useMessages';
@@ -7,56 +7,51 @@ import { useAuth } from 'context/auth';
 import ChatMessage from 'components/ChatMessage';
 import SignOut from 'components/SignOut';
 
-import { ChatRoomContainer, SideBar, ChatRoom } from './styles';
+import Input from 'components/Input';
+import Button from 'components/Button';
+import * as S from './styles';
 
 const Chat = () => {
-  const [error, setError] = useState('');
-  const [messageValue, setMessageValue] = useState('');
-  const messageEndRef = useRef<HTMLDivElement>(null);
+  const [error, setError] = useState(false);
   const { messages, handleAddMessage } = useMessages();
+  const [inputValue, setInputValue] = useState('');
+
   const {
     user: { displayName, photoURL },
   } = useAuth();
 
-  const handleScrollChatToBottom = () => {
-    if (messageEndRef.current !== null) {
-      messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
-    }
+  const handleInput = (value: string) => {
+    setInputValue(value);
   };
 
-  const handleInputValue = (event: ChangeEvent<HTMLInputElement>) => {
-    setMessageValue(event.target.value);
-  };
-
-  const handleFormSubmit = async (event: ChangeEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    try {
-      if (!messageValue) {
-        setError('Type something!');
-        return;
-      }
-
-      await handleAddMessage(messageValue);
-
-      setMessageValue('');
-      setError('');
-    } catch (err) {
-      console.log(err);
+  const sendMessage = async () => {
+    if (!inputValue) {
+      setError(true);
+      return;
     }
+
+    await handleAddMessage(inputValue);
+    setInputValue('');
+    setError(false);
   };
 
   useEffect(() => {
-    handleScrollChatToBottom();
-  }, [handleScrollChatToBottom]);
+    const sendMessageOnKeyUp = (event: KeyboardEvent) => {
+      if (event.key === 'Enter') {
+        sendMessage();
+      }
+    };
+
+    window.addEventListener('keyup', sendMessageOnKeyUp);
+
+    return () => window.removeEventListener('keyup', sendMessageOnKeyUp);
+  }, [sendMessage]);
 
   return (
-    <ChatRoomContainer>
-      <SideBar>
-        <header>
-          <p>Hello!</p>
-        </header>
-        <main>
+    <S.ChatRoomContainer>
+      <S.SideBar>
+        <S.Title>Hello!</S.Title>
+        <S.SideBarContent>
           <p>
             This project was developed by
             <a
@@ -68,41 +63,36 @@ const Chat = () => {
             </a>
             and is not storing any personal data from you.
           </p>
-        </main>
-        <footer>
+        </S.SideBarContent>
+        <S.Profile>
           <figure>
             <img src={photoURL} alt={displayName} />
           </figure>
           <p>{displayName}</p>
-        </footer>
-      </SideBar>
-      <ChatRoom error={error}>
-        <nav>
-          <p>Chat</p>
-          <SignOut />
-        </nav>
-        <ul>
-          {messages?.map(message => (
-            <ChatMessage key={message.id} message={message} />
-          ))}
-          <div ref={messageEndRef} />
-        </ul>
-        <footer>
-          <form onSubmit={handleFormSubmit}>
-            <input
-              type="text"
-              placeholder="Enter your message"
-              value={messageValue}
-              onChange={handleInputValue}
-              maxLength={300}
-            />
-            <button type="submit">
-              <IoMdSend size={24} color="#e0e0e0" />
-            </button>
-          </form>
-        </footer>
-      </ChatRoom>
-    </ChatRoomContainer>
+        </S.Profile>
+      </S.SideBar>
+
+      <S.TopChat>
+        <p>Chat</p>
+        <SignOut />
+      </S.TopChat>
+      <S.Chat>
+        {messages?.map(message => (
+          <ChatMessage key={message.id} message={message} />
+        ))}
+      </S.Chat>
+      <S.MessageInput>
+        <Input
+          placeholder="Talk in the chat"
+          onType={handleInput}
+          error={error}
+          value={inputValue}
+          icon={
+            <Button onClick={sendMessage} size="small" icon={<IoMdSend />} />
+          }
+        />
+      </S.MessageInput>
+    </S.ChatRoomContainer>
   );
 };
 

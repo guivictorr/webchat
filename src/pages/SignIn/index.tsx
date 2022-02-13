@@ -1,10 +1,11 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { FcGoogle } from 'react-icons/fc';
 
 import { useAuth } from 'context/auth';
 
-import Button from 'components/Button/styles';
+import Button from 'components/Button';
 
 import illustration from 'assets/illustration.svg';
 import logo from 'assets/logo.svg';
@@ -45,12 +46,8 @@ const SignIn = () => {
             Log In as anonymous
           </Button>
           <h2>OR</h2>
-          <Button
-            backgroundColor="buttonText"
-            onClick={handleGoogleSignIn}
-            type="button"
-          >
-            <img src={googleicon} alt="Login with google" />
+          <Button minimal onClick={handleGoogleSignIn} type="button">
+            <FcGoogle size={24} />
           </Button>
         </motion.form>
         <motion.footer variants={mainChildrenAnimation}>

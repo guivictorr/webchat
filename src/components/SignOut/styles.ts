@@ -5,7 +5,7 @@ export const Container = styled.button`
   background-color: ${({ theme }) => theme.colors.buttonColor};
   color: ${({ theme }) => theme.colors.primary};
   padding: 10px;
-  border-radius: ${({ theme }) => theme.borderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius.normal};
   font-size: 1.4rem;
   font-weight: bold;
   cursor: pointer;

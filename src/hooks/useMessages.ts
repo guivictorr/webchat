@@ -8,7 +8,7 @@ const useMessages = () => {
     user: { displayName, photoURL, uid },
   } = useAuth();
   const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt');
+  const query = messagesRef.orderBy('createdAt', 'desc').limit(20);
   const [messages] = useCollectionData<MessageProps>(query, {
     idField: 'id',
   });
