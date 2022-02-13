@@ -2,27 +2,25 @@ import React from 'react';
 import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import { useAuth } from '../../context/auth';
+import { useAuth } from 'context/auth';
 
-import Button from '../../components/Button/styles';
+import Button from 'components/Button/styles';
 
-import illustration from '../../assets/illustration.svg';
-import logo from '../../assets/logo.svg';
-import googleicon from '../../assets/googleicon.svg';
+import illustration from 'assets/illustration.svg';
+import logo from 'assets/logo.svg';
+import googleicon from 'assets/googleicon.svg';
 
-import animations from './animations';
+import {
+  mainAnimation,
+  mainChildrenAnimation,
+  sectionAnimation,
+  sectionChildrenAnimation,
+} from './animations';
 import SignInContainer from './styles';
 
 const SignIn = () => {
   const { push } = useHistory();
   const { signInAnonymous, signInWithGoogle } = useAuth();
-
-  const {
-    mainAnimation,
-    mainChildrenAnimation,
-    sectionAnimation,
-    sectionChildrenAnimation,
-  } = animations;
 
   const signIn = (callback: () => void) => async () => {
     await callback();

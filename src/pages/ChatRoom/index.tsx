@@ -1,11 +1,11 @@
 import React, { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
 
-import useMessages from '../../hooks/useMessages';
-import { useAuth } from '../../context/auth';
+import useMessages from 'hooks/useMessages';
+import { useAuth } from 'context/auth';
 
-import ChatMessage from '../../components/ChatMessage';
-import SignOut from '../../components/SignOut';
+import ChatMessage from 'components/ChatMessage';
+import SignOut from 'components/SignOut';
 
 import { ChatRoomContainer, SideBar, ChatRoom } from './styles';
 

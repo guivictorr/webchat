@@ -1,10 +1,10 @@
 import React from 'react';
 
-import { ChatMessageProps } from '../../interfaces';
+import { ChatMessageProps } from 'interfaces';
 
+import formatDate from 'utils/formatDate';
 import { ChatMessageContainer, TextContent } from './styles';
 import { chatMessageAnimation } from './animations';
-import formatDate from '../../utils/formatDate';
 
 const ChatMessage = ({ message }: ChatMessageProps) => {
   const { text, photoURL, name, createdAt } = message;

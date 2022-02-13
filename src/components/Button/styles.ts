@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import { ButtonStyleProps } from '../../interfaces';
+import { ButtonStyleProps } from 'interfaces';
 
 const Button = styled.button<ButtonStyleProps>`
   padding: 15px;
