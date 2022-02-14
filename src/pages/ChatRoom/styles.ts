@@ -10,6 +10,14 @@ export const ChatRoomContainer = styled.div`
     'sidebar chatTop'
     'sidebar chat'
     'sidebar chatInput';
+
+  @media (max-width: 1080px) {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'chatTop'
+      'chat'
+      'chatInput';
+  }
 `;
 
 export const SideBar = styled.aside`
@@ -17,7 +25,10 @@ export const SideBar = styled.aside`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: green;
+
+  @media (max-width: 1080px) {
+    display: none;
+  }
 `;
 
 export const Title = styled.div`
@@ -100,6 +111,10 @@ export const Chat = styled.div`
   display: flex;
   flex-direction: column-reverse;
   padding: 1rem 4rem;
+
+  @media (max-width: 468px) {
+    padding: 1rem;
+  }
 `;
 
 export const MessageInput = styled.div`
