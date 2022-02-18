@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, css } from 'styled-components';
 
 export default createGlobalStyle`
   * {
@@ -13,9 +13,13 @@ export default createGlobalStyle`
   }
 
   body {
-    font-family: 'Noto Sans', sans-serif;
-    font-size: 1.6rem;
-    background-color: #0B090C;
+    ${({ theme }) => css`
+      font-family: ${theme.font.family}, -apple-system, BlinkMacSystemFont,
+        'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+        'Helvetica Neue', sans-serif;
+      font-size: ${theme.font.sizes.xsmall};
+      background-color: ${theme.colors.secondaryBackground};
+    `}
   }
 
   #root {

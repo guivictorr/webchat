@@ -26,6 +26,7 @@ const theme = {
     light: 300,
     normal: 400,
     bold: 600,
+    family: 'Noto Sans',
     sizes: {
       xsmall: '1.2rem',
       small: '1.4rem',
