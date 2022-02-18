@@ -5,7 +5,6 @@ export const ChatRoomContainer = styled.div`
   height: 100vh;
   grid-template-columns: 36rem 1fr;
   grid-template-rows: 7rem 1fr 7rem;
-  gap: 0px 0px;
   grid-template-areas:
     'sidebar chatTop'
     'sidebar chat'
@@ -35,12 +34,12 @@ export const Title = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.secondaryBackground};
     color: ${theme.colors.primary};
+    padding: ${theme.spacings.xsmall} ${theme.spacings.large};
+    font-size: calc(${theme.font.sizes.xsmall} * 2);
   `}
 
   display: flex;
   align-items: center;
-  padding: 2rem 4rem;
-  font-size: 2.4rem;
   height: 7rem;
 `;
 
@@ -48,16 +47,16 @@ export const SideBarContent = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.contrastBackground};
     color: ${theme.colors.primary};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.xsmall};
+    font-size: ${theme.font.sizes.xlarge};
 
     a {
       text-decoration: none;
       color: ${theme.colors.buttonColor};
-      margin: 0 5px;
+      margin: 0 ${theme.spacings.xxsmall};
     }
   `}
 
-  padding: 0.8rem 1.25rem;
-  font-size: 1.8rem;
   flex: 1;
 `;
 
@@ -65,6 +64,8 @@ export const Profile = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.secondaryBackground};
     color: ${theme.colors.primary};
+    padding: ${theme.spacings.xxsmall} 0 ${theme.spacings.xxsmall}
+      ${theme.spacings.small};
 
     figure {
       width: 40px;
@@ -72,7 +73,7 @@ export const Profile = styled.div`
       border-radius: ${theme.borderRadius.rounded};
       background-color: ${theme.colors.buttonColor};
       overflow: hidden;
-      margin-right: 0.8rem;
+      margin-right: ${theme.spacings.xxsmall};
 
       img {
         width: 100%;
@@ -84,7 +85,6 @@ export const Profile = styled.div`
 
   display: flex;
   align-items: center;
-  padding: 1rem 0 1rem 2.5rem;
   height: 7rem;
 `;
 
@@ -92,38 +92,37 @@ export const TopChat = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.contrastBackground};
     color: ${theme.colors.primary};
+    font-size: ${theme.font.sizes.xlarge};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.small};
   `}
 
-  font-size: 2.4rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1rem 2.4rem;
   grid-area: chatTop;
 `;
 
 export const Chat = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.primaryBackground};
+    padding: ${theme.spacings.xxsmall} ${theme.spacings.large};
+    @media (max-width: 468px) {
+      padding: ${theme.spacings.xxsmall};
+    }
   `}
   grid-area: chat;
   overflow: auto;
   display: flex;
   flex-direction: column-reverse;
-  padding: 1rem 4rem;
-
-  @media (max-width: 468px) {
-    padding: 1rem;
-  }
 `;
 
 export const MessageInput = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.primaryBackground};
+    padding: ${theme.spacings.xsmall} ${theme.spacings.small};
   `}
   display: flex;
   align-items: center;
   justify-content: center;
   grid-area: chatInput;
-  padding: 1.5rem 2.5rem;
 `;

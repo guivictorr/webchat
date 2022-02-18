@@ -36,6 +36,6 @@ const theme = {
       huge: '5.2rem',
     },
   },
-};
+} as const;
 
 export default theme;
