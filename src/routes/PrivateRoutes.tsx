@@ -1,12 +1,16 @@
 import React from 'react';
 import { Redirect, Route, RouteProps } from 'react-router-dom';
-import { useAuth } from '../context/auth';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from '@firebase';
 
 const PrivateRoute = ({ ...rest }: RouteProps) => {
-  const { user } = useAuth();
-  const isLogged = Boolean(user.uid);
+  const [user, loading] = useAuthState(auth);
 
-  return isLogged ? <Route {...rest} /> : <Redirect to="/" />;
+  if (loading) {
+    return <p>loading</p>;
+  }
+
+  return user ? <Route {...rest} /> : <Redirect to="/" />;
 };
 
 export default PrivateRoute;

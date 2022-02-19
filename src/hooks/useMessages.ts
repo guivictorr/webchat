@@ -1,12 +1,10 @@
 import { useCollectionData } from 'react-firebase-hooks/firestore';
-import { useAuth } from 'context/auth';
-import { firestore, firebase } from '@firebase';
+import { auth, firestore, firebase } from '@firebase';
 import { MessageProps } from 'interfaces';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 const useMessages = () => {
-  const {
-    user: { displayName, photoURL, uid },
-  } = useAuth();
+  const [user] = useAuthState(auth);
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt', 'desc').limit(20);
   const [messages] = useCollectionData<MessageProps>(query, {
@@ -16,9 +14,9 @@ const useMessages = () => {
   const handleAddMessage = async (text: string) => {
     await messagesRef.add({
       text,
-      name: displayName,
-      photoURL,
-      uid,
+      name: user.displayName,
+      photoURL: user.photoURL,
+      uid: user.uid,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
     });
   };

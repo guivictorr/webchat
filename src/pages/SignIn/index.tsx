@@ -1,82 +1,36 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
-import { motion } from 'framer-motion';
-import { FcGoogle } from 'react-icons/fc';
-
-import { useAuth } from 'context/auth';
-
-import Button from 'components/Button';
 
 import illustration from 'assets/illustration.svg';
 import logo from 'assets/logo.svg';
 
-import {
-  mainAnimation,
-  mainChildrenAnimation,
-  sectionAnimation,
-  sectionChildrenAnimation,
-} from './animations';
-import SignInContainer from './styles';
+import SignInForm from 'components/SignInForm';
+
+import * as S from './styles';
 
 const SignIn = () => {
-  const { push } = useHistory();
-  const { signInAnonymous, signInWithGoogle } = useAuth();
-
-  const signIn = (callback: () => void) => async () => {
-    await callback();
-    push('/chat');
-  };
-
-  const handleGoogleSignIn = signIn(signInWithGoogle);
-  const handleAnonymousSignIn = signIn(signInAnonymous);
-
   return (
-    <SignInContainer exit={{ opacity: 0 }}>
-      <motion.main variants={mainAnimation} initial="hidden" animate="show">
-        <motion.header variants={mainChildrenAnimation}>
+    <S.Wrapper>
+      <S.Main>
+        <S.Header>
           <img src={logo} alt="WebChat" loading="lazy" />
-        </motion.header>
-        <motion.form variants={mainChildrenAnimation}>
-          <header>
-            <h1>WELCOME</h1>
-            <span>Sign In</span>
-          </header>
-          <Button onClick={handleAnonymousSignIn} type="button">
-            Log In as anonymous
-          </Button>
-          <h2>OR</h2>
-          <Button minimal onClick={handleGoogleSignIn} type="button">
-            <FcGoogle size={24} />
-          </Button>
-        </motion.form>
-        <motion.footer variants={mainChildrenAnimation}>
-          <p>
-            Made with 💙 by
-            <a
-              href="https://github.com/guivictorr"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Guilherme Victor
-            </a>
-          </p>
-        </motion.footer>
-      </motion.main>
-      <motion.section
-        variants={sectionAnimation}
-        initial="hidden"
-        animate="show"
-      >
-        <motion.figure variants={sectionChildrenAnimation}>
-          <motion.img
-            variants={sectionChildrenAnimation}
-            src={illustration}
-            alt="Your place to talk"
-            loading="lazy"
-          />
-        </motion.figure>
-      </motion.section>
-    </SignInContainer>
+        </S.Header>
+        <SignInForm />
+        <S.Footer>
+          <p>Made with 💙 by</p>
+          <a
+            href="https://github.com/guivictorr"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Guilherme Victor
+          </a>
+        </S.Footer>
+      </S.Main>
+
+      <S.Section>
+        <S.Image src={illustration} alt="Your place to talk" loading="lazy" />
+      </S.Section>
+    </S.Wrapper>
   );
 };
 

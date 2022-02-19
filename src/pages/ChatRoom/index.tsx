@@ -2,26 +2,26 @@ import React, { useEffect, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
 
 import useMessages from 'hooks/useMessages';
-import { useAuth } from 'context/auth';
 
 import ChatMessage from 'components/ChatMessage';
-import SignOut from 'components/SignOut';
 
 import Input from 'components/Input';
 import Button from 'components/Button';
+import { auth } from '@firebase';
+import { useHistory } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import * as S from './styles';
 
 const Chat = () => {
+  const { push } = useHistory();
   const [error, setError] = useState(false);
   const { messages, handleAddMessage } = useMessages();
   const [inputValue, setInputValue] = useState('');
-
-  const {
-    user: { displayName, photoURL },
-  } = useAuth();
+  const [user] = useAuthState(auth);
 
   const handleInput = (value: string) => {
     setInputValue(value);
+    console.log(user);
   };
 
   const sendMessage = async () => {
@@ -30,9 +30,14 @@ const Chat = () => {
       return;
     }
 
-    await handleAddMessage(inputValue);
     setInputValue('');
     setError(false);
+    await handleAddMessage(inputValue);
+  };
+
+  const handleSignOut = () => {
+    push('/');
+    auth.signOut();
   };
 
   useEffect(() => {
@@ -66,15 +71,17 @@ const Chat = () => {
         </S.SideBarContent>
         <S.Profile>
           <figure>
-            <img src={photoURL} alt={displayName} />
+            <img src={user.photoURL} alt={user.displayName} />
           </figure>
-          <p>{displayName}</p>
+          <p>{user.displayName}</p>
         </S.Profile>
       </S.SideBar>
 
       <S.TopChat>
         <p>Chat</p>
-        <SignOut />
+        <Button onClick={handleSignOut} size="medium">
+          Sign Out
+        </Button>
       </S.TopChat>
       <S.Chat>
         {messages?.map(message => (

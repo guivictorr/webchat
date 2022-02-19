@@ -12,7 +12,14 @@ firebase.initializeApp({
   appId: process.env.REACT_APP_APP_ID,
 });
 
-export { firebase };
+const signInWithGoogle = async () => {
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+  const provider = new firebase.auth.GoogleAuthProvider();
+  await auth.signInWithPopup(provider);
+};
+
+export { firebase, signInWithGoogle };
 
 export const auth = firebase.auth();
 export const firestore = firebase.firestore();
