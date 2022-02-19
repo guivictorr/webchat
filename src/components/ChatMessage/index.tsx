@@ -3,22 +3,20 @@ import React from 'react';
 import { ChatMessageProps } from 'interfaces';
 
 import formatDate from 'utils/formatDate';
-import { ChatMessageContainer, TextContent } from './styles';
+import * as S from './styles';
 
 const ChatMessage = ({ message }: ChatMessageProps) => {
   const { text, photoURL, name, createdAt } = message;
-
+  const date = formatDate(createdAt.seconds * 1000);
   return (
-    <ChatMessageContainer>
-      <figure>
-        <img src={photoURL} alt={name} />
-      </figure>
-      <TextContent>
-        <h3>{name}</h3>
-        <span>{createdAt && formatDate(createdAt.seconds * 1000)}</span>
-        <p>{text}</p>
-      </TextContent>
-    </ChatMessageContainer>
+    <S.Wrapper>
+      <S.Avatar src={photoURL} alt={name} />
+      <S.TextContainer>
+        <S.Name translate="no">{name}</S.Name>
+        <S.CreatedAt>{date}</S.CreatedAt>
+        <S.Message>{text}</S.Message>
+      </S.TextContainer>
+    </S.Wrapper>
   );
 };
 

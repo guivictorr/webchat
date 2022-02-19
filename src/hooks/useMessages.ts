@@ -7,7 +7,7 @@ const useMessages = () => {
   const [user] = useAuthState(auth);
   const messagesRef = firestore.collection('messages');
   const query = messagesRef.orderBy('createdAt', 'desc').limit(20);
-  const [messages] = useCollectionData<MessageProps>(query, {
+  const [messages, isLoading] = useCollectionData<MessageProps>(query, {
     idField: 'id',
   });
 
@@ -17,13 +17,14 @@ const useMessages = () => {
       name: user.displayName,
       photoURL: user.photoURL,
       uid: user.uid,
-      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      createdAt: firebase.firestore.Timestamp.now(),
     });
   };
 
   return {
     messages,
     handleAddMessage,
+    isLoading,
   };
 };
 

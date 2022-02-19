@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { IoMdSend } from 'react-icons/io';
 
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import useMessages from 'hooks/useMessages';
 
 import ChatMessage from 'components/ChatMessage';
@@ -15,13 +18,12 @@ import * as S from './styles';
 const Chat = () => {
   const { push } = useHistory();
   const [error, setError] = useState(false);
-  const { messages, handleAddMessage } = useMessages();
+  const { messages, handleAddMessage, isLoading } = useMessages();
   const [inputValue, setInputValue] = useState('');
   const [user] = useAuthState(auth);
 
   const handleInput = (value: string) => {
     setInputValue(value);
-    console.log(user);
   };
 
   const sendMessage = async () => {
@@ -84,9 +86,31 @@ const Chat = () => {
         </Button>
       </S.TopChat>
       <S.Chat>
-        {messages?.map(message => (
-          <ChatMessage key={message.id} message={message} />
-        ))}
+        {isLoading
+          ? Array.from(
+              {
+                length: 10,
+              },
+              () => (
+                <S.Loading>
+                  <Skeleton circle width={52} height={52} baseColor="gray" />
+                  <div>
+                    <Skeleton width={200} baseColor="gray" />
+                    <Skeleton width={150} baseColor="gray" />
+                    <Skeleton
+                      width={150}
+                      baseColor="gray"
+                      style={{
+                        marginTop: 10,
+                      }}
+                    />
+                  </div>
+                </S.Loading>
+              ),
+            )
+          : messages?.map(message => (
+              <ChatMessage key={message.id} message={message} />
+            ))}
       </S.Chat>
       <S.MessageInput>
         <Input
