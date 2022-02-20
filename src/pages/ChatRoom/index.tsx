@@ -91,8 +91,8 @@ const Chat = () => {
               {
                 length: 10,
               },
-              () => (
-                <S.Loading>
+              (_, index) => (
+                <S.Loading key={index}>
                   <Skeleton circle width={52} height={52} baseColor="gray" />
                   <div>
                     <Skeleton width={200} baseColor="gray" />
