@@ -106,7 +106,6 @@ export const Chat = styled.div`
   ${({ theme }) => css`
     background-color: ${theme.colors.primaryBackground};
     padding: ${theme.spacings.xxsmall} ${theme.spacings.large};
-    gap: ${theme.spacings.medium};
     @media (max-width: 468px) {
       padding: ${theme.spacings.xxsmall};
     }
@@ -126,14 +125,4 @@ export const MessageInput = styled.div`
   align-items: center;
   justify-content: center;
   grid-area: chatInput;
-`;
-
-export const Loading = styled.div`
-  max-width: 30px;
-  display: flex;
-  align-items: flex-start;
-
-  > div {
-    margin-left: 1rem;
-  }
 `;

@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { IoMdSend } from 'react-icons/io';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import InfiniteScroll from 'react-infinite-scroll-component';
 
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
-
+import { auth } from '@firebase';
 import useMessages from 'hooks/useMessages';
 
 import ChatMessage from 'components/ChatMessage';
-
 import Input from 'components/Input';
 import Button from 'components/Button';
-import { auth } from '@firebase';
-import { useHistory } from 'react-router-dom';
-import { useAuthState } from 'react-firebase-hooks/auth';
+
+import MessageLoader from 'components/MessageLoader';
 import * as S from './styles';
 
 const Chat = () => {
   const { push } = useHistory();
   const [error, setError] = useState(false);
-  const { messages, handleAddMessage, isLoading } = useMessages();
+  const { messages, handleAddMessage, fetchMore, isEmpty } = useMessages();
   const [inputValue, setInputValue] = useState('');
   const [user] = useAuthState(auth);
 
@@ -85,32 +84,25 @@ const Chat = () => {
           Sign Out
         </Button>
       </S.TopChat>
-      <S.Chat>
-        {isLoading
-          ? Array.from(
-              {
-                length: 10,
-              },
-              (_, index) => (
-                <S.Loading key={index}>
-                  <Skeleton circle width={52} height={52} baseColor="gray" />
-                  <div>
-                    <Skeleton width={200} baseColor="gray" />
-                    <Skeleton width={150} baseColor="gray" />
-                    <Skeleton
-                      width={150}
-                      baseColor="gray"
-                      style={{
-                        marginTop: 10,
-                      }}
-                    />
-                  </div>
-                </S.Loading>
-              ),
-            )
-          : messages?.map(message => (
-              <ChatMessage key={message.id} message={message} />
-            ))}
+      <S.Chat id="scrollableDiv">
+        <InfiniteScroll
+          dataLength={messages.length}
+          hasMore={!isEmpty}
+          loader={<MessageLoader />}
+          next={fetchMore}
+          scrollThreshold={0.8}
+          style={{
+            display: 'flex',
+            flexDirection: 'column-reverse',
+            gap: '3.2rem',
+          }}
+          inverse
+          scrollableTarget="scrollableDiv"
+        >
+          {messages?.map(message => (
+            <ChatMessage message={message} key={message.id} />
+          ))}
+        </InfiniteScroll>
       </S.Chat>
       <S.MessageInput>
         <Input
