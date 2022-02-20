@@ -50,12 +50,19 @@ const useMessages = () => {
   };
 
   const handleAddMessage = async (text: string) => {
-    await messagesRef.add({
+    const message = {
       text,
       name: user.displayName,
       photoURL: user.photoURL,
       uid: user.uid,
       createdAt: firebase.firestore.Timestamp.now(),
+    };
+
+    const newMessageQuery = await messagesRef.add(message);
+    newMessageQuery.get().then(doc => {
+      const docData = doc.data() as MessageProps;
+
+      setMessages(prevState => [docData, ...prevState]);
     });
   };
 
