@@ -15,13 +15,14 @@ export const Main = styled.main`
     align-items: center;
     justify-content: space-between;
     width: 40%;
+    padding: ${theme.spacings.medium};
+
+    @media (max-width: 1080px) {
+      width: 100%;
+    }
   `}
 `;
-export const Header = styled.header`
-  img {
-    transform: scale(0.7);
-  }
-`;
+export const Header = styled.header``;
 export const Footer = styled.footer`
   ${({ theme }) => css`
     padding: ${theme.spacings.xsmall} ${theme.spacings.large};
@@ -41,6 +42,13 @@ export const Section = styled.section`
     display: flex;
     align-items: center;
     justify-content: center;
+
+    @media (max-width: 1080px) {
+      display: none;
+    }
   `}
 `;
-export const Image = styled.img``;
+export const Image = styled.img`
+  width: 100%;
+  height: 100%;
+`;

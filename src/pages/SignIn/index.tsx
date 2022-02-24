@@ -12,7 +12,7 @@ const SignIn = () => {
     <S.Wrapper>
       <S.Main>
         <S.Header>
-          <img src={logo} alt="WebChat" loading="lazy" />
+          <S.Image src={logo} alt="WebChat" loading="lazy" />
         </S.Header>
         <SignInForm />
         <S.Footer>
@@ -28,7 +28,12 @@ const SignIn = () => {
       </S.Main>
 
       <S.Section>
-        <S.Image src={illustration} alt="Your place to talk" loading="lazy" />
+        <S.Image
+          src={illustration}
+          alt="Your place to talk"
+          loading="lazy"
+          style={{ width: 750, height: 750 }}
+        />
       </S.Section>
     </S.Wrapper>
   );
