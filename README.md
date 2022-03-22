@@ -1,7 +1,14 @@
 <h1 align='center'>💬 WebChat</h1>
-<p align='center'>Site with google authentication, anonymously login and real time chat</p>
+<p align='center'>Webchat is a site where you can use your google account to talk with other people</p>
+
+<div align='center'>
+  <a href="https://webchatapp.vercel.app" >
+    <img src="https://user-images.githubusercontent.com/55333929/159385427-cd71441c-64e4-48d3-9fce-f2b4cd8b6a96.png">
+  </a>
+</div>
 
 ## 🛠 Technologies
+
 
 This project was developed with the following technologies:
 
