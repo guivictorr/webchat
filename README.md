@@ -9,16 +9,17 @@
 
 ## 🛠 Technologies
 
-
 This project was developed with the following technologies:
 
 Frontend
+
 - [ReactJS](https://pt-br.reactjs.org)
 - [Styled Components](styled-components.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [Typescript](typescriptlang.org/)
 
 Backend
+
 - [Firebase](https://firebase.google.com/)
 
 ## 📱💻 Instructions
@@ -45,3 +46,7 @@ yarn start
 - Push to your branch: `git push origin my-feature`.
 
 Once your pull request has been merged, you can delete your branch.
+
+## 📝 License
+
+This project is under the MIT license. See the [LICENSE](https://github.com/guivictorr/webchat/blob/master/LICENSE) file for more details.
