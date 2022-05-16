@@ -1,25 +1,26 @@
-import firebase from 'firebase/app';
+import { initializeApp } from 'firebase/app';
+import { getDatabase } from 'firebase/database';
+import { GoogleAuthProvider, signInWithPopup, getAuth } from 'firebase/auth';
 
-import 'firebase/firestore';
-import 'firebase/auth';
-
-firebase.initializeApp({
+const firebaseConfig = {
   apiKey: process.env.REACT_APP_API_KEY,
   authDomain: process.env.REACT_APP_AUTH_DOMAIN,
   projectId: process.env.REACT_APP_PROJECT_ID,
   storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
   messagingSenderId: process.env.REACT_APP_MESSAGING_ID,
   appId: process.env.REACT_APP_APP_ID,
-});
-
-const signInWithGoogle = async () => {
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
-
-  const provider = new firebase.auth.GoogleAuthProvider();
-  await auth.signInWithPopup(provider);
+  databaseURL: process.env.REACT_APP_DATABASE_URL,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 };
 
-export { firebase, signInWithGoogle };
+const app = initializeApp(firebaseConfig);
 
-export const auth = firebase.auth();
-export const firestore = firebase.firestore();
+const signInWithGoogle = async () => {
+  const provider = new GoogleAuthProvider();
+  await signInWithPopup(auth, provider);
+};
+
+export { signInWithGoogle };
+
+export const database = getDatabase(app);
+export const auth = getAuth(app);

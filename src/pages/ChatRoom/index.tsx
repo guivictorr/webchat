@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { IoMdSend } from 'react-icons/io';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import InfiniteScroll from 'react-infinite-scroll-component';
 
 import { auth } from '@firebase';
 import useMessages from 'hooks/useMessages';
@@ -11,13 +10,12 @@ import ChatMessage from 'components/ChatMessage';
 import Input from 'components/Input';
 import Button from 'components/Button';
 
-import MessageLoader from 'components/MessageLoader';
 import * as S from './styles';
 
 const Chat = () => {
   const { push } = useHistory();
   const [error, setError] = useState(false);
-  const { messages, handleAddMessage, fetchMore, isEmpty } = useMessages();
+  const { handleAddMessage, messages } = useMessages();
   const [inputValue, setInputValue] = useState('');
   const [user] = useAuthState(auth);
 
@@ -26,14 +24,21 @@ const Chat = () => {
   };
 
   const sendMessage = async () => {
-    if (!inputValue) {
+    if (!inputValue || !user) {
       setError(true);
       return;
     }
 
+    await handleAddMessage({
+      author: user.displayName || 'Not found',
+      authorPic:
+        user.photoURL ||
+        'https://source.boringavatars.com/marble/120/Maria%20Mitchell?colors=2F80ED,649DEA,266ECF,56BEFD,03001C',
+      message: inputValue,
+      uid: user.uid,
+    });
     setInputValue('');
     setError(false);
-    await handleAddMessage(inputValue);
   };
 
   const handleSignOut = () => {
@@ -72,9 +77,15 @@ const Chat = () => {
         </S.SideBarContent>
         <S.Profile>
           <figure>
-            <img src={user.photoURL} alt={user.displayName} />
+            <img
+              src={
+                user?.photoURL ||
+                'https://source.boringavatars.com/marble/120/Maria%20Mitchell?colors=2F80ED,649DEA,266ECF,56BEFD,03001C'
+              }
+              alt={user?.displayName || 'Not found'}
+            />
           </figure>
-          <p>{user.displayName}</p>
+          <p>{user?.displayName}</p>
         </S.Profile>
       </S.SideBar>
 
@@ -84,25 +95,10 @@ const Chat = () => {
           Sign Out
         </Button>
       </S.TopChat>
-      <S.Chat id="scrollableDiv">
-        <InfiniteScroll
-          dataLength={messages.length}
-          hasMore={!isEmpty}
-          loader={<MessageLoader />}
-          next={fetchMore}
-          scrollThreshold={0.8}
-          style={{
-            display: 'flex',
-            flexDirection: 'column-reverse',
-            gap: '3.2rem',
-          }}
-          inverse
-          scrollableTarget="scrollableDiv"
-        >
-          {messages?.map(message => (
-            <ChatMessage message={message} key={message.id} />
-          ))}
-        </InfiniteScroll>
+      <S.Chat>
+        {messages?.map(message => (
+          <ChatMessage {...message.val()} key={message.key} />
+        ))}
       </S.Chat>
       <S.MessageInput>
         <Input

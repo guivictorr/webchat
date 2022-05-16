@@ -1,77 +1,38 @@
-import { auth, firestore, firebase } from '@firebase';
-import { MessageProps } from 'interfaces';
-import { useEffect, useState } from 'react';
-import { useAuthState } from 'react-firebase-hooks/auth';
+import { database } from '@firebase';
+import { child, push, ref, update } from 'firebase/database';
+import { useList } from 'react-firebase-hooks/database';
 
-const MESSAGES_LIMIT = 15;
+export type MessageData = {
+  uid: string;
+  message: string;
+  authorPic: string;
+  author: string;
+  createdAt?: string;
+};
 
 const useMessages = () => {
-  const messagesRef = firestore.collection('messages');
-  const query = messagesRef.orderBy('createdAt', 'desc');
+  const [list, loading] = useList(ref(database, 'messages'));
 
-  const [user] = useAuthState(auth);
-  const [messages, setMessages] = useState<MessageProps[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [isEmpty, setIsEmpty] = useState(false);
-  const [lastDoc, setLastDoc] = useState<firebase.firestore.DocumentData>();
-
-  useEffect(() => {
-    query
-      .limit(MESSAGES_LIMIT)
-      .get()
-      .then(updateState)
-      .finally(() => setIsLoading(false));
-  }, []);
-
-  const fetchMore = () => {
-    query
-      .startAfter(lastDoc)
-      .limit(MESSAGES_LIMIT)
-      .get()
-      .then(updateState)
-      .finally(() => setIsLoading(false));
-  };
-
-  const updateState = ({
-    docs,
-    size,
-  }: firebase.firestore.QuerySnapshot<firebase.firestore.DocumentData>) => {
-    const isCollectionEmpty = size === 0;
-
-    if (isCollectionEmpty) {
-      setIsEmpty(true);
-      return;
-    }
-
-    const docData = docs.map(doc => doc.data()) as MessageProps[];
-    const lastCurrentDoc = docs[docs.length - 1];
-    setMessages(prevState => [...prevState, ...docData]);
-    setLastDoc(lastCurrentDoc);
-  };
-
-  const handleAddMessage = async (text: string) => {
+  const handleAddMessage = (messageData: MessageData) => {
     const message = {
-      text,
-      name: user.displayName,
-      photoURL: user.photoURL,
-      uid: user.uid,
-      createdAt: firebase.firestore.Timestamp.now(),
+      ...messageData,
+      createdAt: new Date().toISOString(),
     };
 
-    const newMessageQuery = await messagesRef.add(message);
-    newMessageQuery.get().then(doc => {
-      const docData = doc.data() as MessageProps;
+    const newPostKey = push(child(ref(database), 'messages'));
 
-      setMessages(prevState => [docData, ...prevState]);
-    });
+    const updates = {
+      [`messages/${newPostKey.key}`]: message,
+      [`user-messages/${message.uid}/${newPostKey.key}`]: message,
+    };
+
+    update(ref(database), updates);
   };
 
   return {
-    messages,
-    isLoading,
+    messages: list,
+    loading,
     handleAddMessage,
-    fetchMore,
-    isEmpty,
   };
 };
 

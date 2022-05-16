@@ -113,7 +113,9 @@ export const Chat = styled.div`
   grid-area: chat;
   overflow: auto;
   display: flex;
-  flex-direction: column-reverse;
+  gap: 4rem;
+  justify-content: flex-end;
+  flex-direction: column;
 `;
 
 export const MessageInput = styled.div`

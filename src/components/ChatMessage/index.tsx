@@ -1,20 +1,22 @@
 import React from 'react';
 
-import { ChatMessageProps } from 'interfaces';
-
 import formatDate from 'utils/formatDate';
+import { MessageData } from 'hooks/useMessages';
 import * as S from './styles';
 
-const ChatMessage = ({ message }: ChatMessageProps) => {
-  const { text, photoURL, name, createdAt } = message;
-  const date = formatDate(createdAt.seconds * 1000);
+const ChatMessage = ({
+  author,
+  authorPic,
+  message,
+  createdAt,
+}: MessageData) => {
   return (
     <S.Wrapper>
-      <S.Avatar src={photoURL} alt={name} />
+      <S.Avatar src={authorPic} alt={author} />
       <S.TextContainer>
-        <S.Name translate="no">{name}</S.Name>
-        <S.CreatedAt>{date}</S.CreatedAt>
-        <S.Message>{text}</S.Message>
+        <S.Name translate="no">{author}</S.Name>
+        <S.CreatedAt>{formatDate(createdAt || 'Not found')}</S.CreatedAt>
+        <S.Message>{message}</S.Message>
       </S.TextContainer>
     </S.Wrapper>
   );
