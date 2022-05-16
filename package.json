@@ -4,13 +4,10 @@
   "private": true,
   "dependencies": {
     "firebase": "^9.8.1",
-    "framer-motion": "^3.3.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-firebase-hooks": "^5.0.3",
     "react-icons": "^3.11.0",
-    "react-infinite-scroll-component": "^6.1.0",
-    "react-loading-skeleton": "^3.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.0",
     "styled-components": "^5.2.1",
@@ -21,7 +18,8 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint --fix ."
   },
   "eslintConfig": {
     "extends": [
@@ -51,18 +49,15 @@
     "@types/react-dom": "^16.9.8",
     "@types/react-router-dom": "^5.1.7",
     "@types/styled-components": "^5.1.4",
-    "@typescript-eslint/eslint-plugin": "^4.4.0",
-    "@typescript-eslint/parser": "^4.4.0",
+    "@typescript-eslint/eslint-plugin": "^5.23.0",
+    "@typescript-eslint/parser": "^5.23.0",
     "cz-conventional-changelog": "3.3.0",
-    "eslint": "7.11.0",
-    "eslint-config-airbnb": "^18.2.0",
-    "eslint-config-prettier": "^6.12.0",
-    "eslint-import-resolver-typescript": "^2.3.0",
-    "eslint-plugin-import": "^2.22.1",
-    "eslint-plugin-jsx-a11y": "^6.3.1",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.21.3",
-    "eslint-plugin-react-hooks": "^4.1.2",
+    "eslint": "^8.2.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "prettier": "^2.1.2"
   },
   "config": {

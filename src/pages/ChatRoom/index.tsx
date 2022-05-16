@@ -82,7 +82,7 @@ const Chat = () => {
                 user?.photoURL ||
                 'https://source.boringavatars.com/marble/120/Maria%20Mitchell?colors=2F80ED,649DEA,266ECF,56BEFD,03001C'
               }
-              alt={user?.displayName || 'Not found'}
+              alt={user?.photoURL || 'Profile picture'}
             />
           </figure>
           <p>{user?.displayName}</p>
