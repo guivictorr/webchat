@@ -34,7 +34,9 @@ cd webchat
 ## 3. Install dependencies
 yarn
 
-## 4. Run the app
+## 4. Configure .env file with your firebase credentials
+
+## 5. Run the app
 yarn start
 ```
 
